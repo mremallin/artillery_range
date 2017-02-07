@@ -26,6 +26,8 @@ update_frame (SDL_Event *e,
     display_set_text_cursor(0, 0);
     display_printf("!\"#$%%&'()*+,-./0123456789:;<=>?@"
                    "ABCDEFGHI                   JKLMNOPQRSTUVWXYZ");
+    display_set_text_cursor(0, SCREEN_HEIGHT/2);
+    display_printf_centred("Hello User!");
     display_finish_frame();
 }
 

@@ -107,6 +107,18 @@ display_set_text_cursor (uint32_t x, uint32_t y)
     text_cursor_y = y;
 }
 
+uint32_t
+display_get_text_cursor_x (void)
+{
+    return text_cursor_x;
+}
+
+uint32_t
+display_get_text_cursor_y (void)
+{
+    return text_cursor_y;
+}
+
 void
 display_set_text_color (uint32_t argb)
 {
@@ -121,7 +133,8 @@ display_putc (char c)
     uint32_t char_bitmap_line = 0;
     uint32_t char_draw_x = 0;
     uint32_t char_draw_y = 0;
-    uint8_t *char_bitmap = charset_get_char_bitmap(c);
+    /* TODO: Don't support lower case. Force to upper. */
+    uint8_t *char_bitmap = charset_get_char_bitmap(toupper(c));
 
     /* Special case for newlines. */
     if (c == '\n') {
@@ -156,6 +169,28 @@ display_putc (char c)
 }
 
 void
+display_printf_centred (const char *fmt, ...)
+{
+    char buffer[100];
+    uint32_t i = 0, chars_printed = 0;
+    va_list args;
+
+    va_start(args, fmt);
+    chars_printed = vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_end(args);
+
+    display_set_text_cursor((SCREEN_WIDTH -
+                             (chars_printed *
+                             (CHAR_WIDTH + CHAR_KERNING_PIXELS_X))) / 2,
+                            display_get_text_cursor_y());
+
+    while (buffer[i] != 0) {
+        display_putc(buffer[i]);
+        i++;
+    }
+}
+
+void
 display_printf (const char *fmt, ...)
 {
     char buffer[100];
@@ -170,4 +205,5 @@ display_printf (const char *fmt, ...)
         display_putc(buffer[i]);
         i++;
     }
+
 }
