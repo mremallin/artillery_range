@@ -205,5 +205,4 @@ display_printf (const char *fmt, ...)
         display_putc(buffer[i]);
         i++;
     }
-
 }
