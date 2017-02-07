@@ -5,34 +5,49 @@
 #include "main.h"
 #include "display.h"
 
-void
-update_screen_buffer()
-{
-    uint32_t *buffer = display_get_buffer();
-    uint32_t i = 0;
+static bool quitting = false;
+bool once = true;
 
-    for (i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
-        buffer[i] = (i % 0xff) << 16 |
-                    (i % 0x0f) << 8 |
-                    (i % 0xf0);
+static void
+handle_system_event (SDL_Event *e)
+{
+    if (e->type == SDL_QUIT) {
+        quitting = true;
+        SDL_Log("Got a quit event. Exiting...");
     }
 }
 
-void
+static void
+update_frame (SDL_Event *e,
+              uint32_t frame_delta_ticks)
+{
+    handle_system_event(e);
+    if (once) {
+        display_printf("!\"#$%%");
+        once = false;
+    }
+    display_finish_frame();
+}
+
+static void
 main_event_loop (void)
 {
     SDL_Event e;
-    bool quit = false;
+    uint32_t frame_start_ticks = 0;
+    uint32_t frame_end_ticks = 0;
+    uint32_t frame_delta_ticks = 0;
 
-    while (!quit) {
+    while (!quitting) {
         while (SDL_PollEvent(&e) != 0) {
-            if (e.type == SDL_QUIT) {
-                quit = true;
-                SDL_Log("Got a quit event. Exiting...");
+            /* Bump the frame delta if we're too fast. */
+            if (frame_delta_ticks < 1) {
+                frame_delta_ticks = 1;
             }
 
-            update_screen_buffer();
-            display_finish_frame();
+            frame_start_ticks = SDL_GetTicks();
+            update_frame(&e, frame_delta_ticks);
+            frame_end_ticks = SDL_GetTicks();
+            frame_delta_ticks = frame_end_ticks - frame_start_ticks;
         }
     }
 }

@@ -12,7 +12,7 @@ display_finish_frame(void);
 void
 display_shutdown(void);
 
-uint32_t *
-display_get_buffer(void);
+void
+display_printf(const char *fmt, ...);
 
 #endif /* __DISPLAY_H__ */
