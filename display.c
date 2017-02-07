@@ -123,6 +123,21 @@ display_putc (char c)
     uint32_t char_draw_y = 0;
     uint8_t *char_bitmap = charset_get_char_bitmap(c);
 
+    /* Special case for newlines. */
+    if (c == '\n') {
+        /* 8 pixels character height + 2 pixels spacing. */
+        text_cursor_y += CHAR_NEWLINE_PIXELS_Y;
+    }
+
+    /* Need to handle screen wrapping as well. */
+    if ((char_x + CHAR_WIDTH) >= SCREEN_WIDTH) {
+        char_x = 0;
+        text_cursor_x = 0;
+
+        char_y += CHAR_NEWLINE_PIXELS_Y;
+        text_cursor_y += CHAR_NEWLINE_PIXELS_Y;
+    }
+
     for (char_draw_y = 0; char_draw_y < sizeof(uint8_t) * 8;
          char_draw_y++) {
         for (char_draw_x = 0; char_draw_x < sizeof(uint8_t) *8;
@@ -137,7 +152,7 @@ display_putc (char c)
         }
     }
 
-    text_cursor_x += (sizeof(uint8_t) * 8) + 1;
+    text_cursor_x += (sizeof(uint8_t) * 8) + CHAR_KERNING_PIXELS_X;
 }
 
 void
