@@ -22,10 +22,9 @@ update_frame (SDL_Event *e,
               uint32_t frame_delta_ticks)
 {
     handle_system_event(e);
-    if (once) {
-        display_printf("!\"#$%%");
-        once = false;
-    }
+    display_start_frame();
+    display_set_text_cursor(0, 0);
+    display_printf("!\"#$%%&'()*+,-./012");
     display_finish_frame();
 }
 

@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <errno.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "main.h"
 #include "display.h"
@@ -68,6 +69,13 @@ display_shutdown (void)
 }
 
 void
+display_start_frame (void)
+{
+    memset(screen_buffer, 0,
+           SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(uint32_t));
+}
+
+void
 display_finish_frame (void)
 {
     if (SDL_UpdateTexture(screen_texture, NULL, screen_buffer,
@@ -90,6 +98,13 @@ display_finish_frame (void)
     }
 
     SDL_RenderPresent(renderer);
+}
+
+void
+display_set_text_cursor (uint32_t x, uint32_t y)
+{
+    text_cursor_x = x;
+    text_cursor_y = y;
 }
 
 void
