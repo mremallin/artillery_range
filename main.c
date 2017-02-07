@@ -4,9 +4,9 @@
 
 #include "main.h"
 #include "display.h"
+#include "charset.h"
 
 static bool quitting = false;
-bool once = true;
 
 static void
 handle_system_event (SDL_Event *e)
@@ -15,6 +15,32 @@ handle_system_event (SDL_Event *e)
         quitting = true;
         SDL_Log("Got a quit event. Exiting...");
     }
+}
+
+#define FRAME_MS_60FPS (1000/60)
+#define FRAME_MS_30FPS (1000/30)
+
+static void
+display_framerate (uint32_t frame_ticks_ms)
+{
+    uint32_t old_text_colour = display_get_text_colour();
+
+    display_set_text_cursor(0, SCREEN_HEIGHT - CHAR_HEIGHT);
+
+    if (frame_ticks_ms <= FRAME_MS_60FPS) {
+        /* Green */
+        display_set_text_colour(0xff00ff00);
+    } else if (frame_ticks_ms > FRAME_MS_60FPS &&
+               frame_ticks_ms < FRAME_MS_30FPS) {
+        /* Yellow */
+        display_set_text_colour(0xffffff00);
+    } else {
+        /* Red */
+        display_set_text_colour(0xffff0000);
+    }
+
+    display_printf("Frame ticks: %u", frame_ticks_ms);
+    display_set_text_colour(old_text_colour);
 }
 
 static void
@@ -28,6 +54,9 @@ update_frame (SDL_Event *e,
                    "ABCDEFGHI                   JKLMNOPQRSTUVWXYZ");
     display_set_text_cursor(0, SCREEN_HEIGHT/2);
     display_printf_centred("Hello User!");
+#ifdef DEBUG_MODE
+    display_framerate(frame_delta_ticks);
+#endif
     display_finish_frame();
 }
 

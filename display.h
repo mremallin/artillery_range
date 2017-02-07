@@ -24,6 +24,12 @@ display_get_text_cursor_x(void);
 uint32_t
 display_get_text_cursor_y(void);
 
+uint32_t
+display_get_text_colour();
+
+void
+display_set_text_colour(uint32_t argb);
+
 void
 display_printf(const char *fmt, ...);
 

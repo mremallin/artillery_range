@@ -119,8 +119,14 @@ display_get_text_cursor_y (void)
     return text_cursor_y;
 }
 
+uint32_t
+display_get_text_colour (void)
+{
+    return text_colour;
+}
+
 void
-display_set_text_color (uint32_t argb)
+display_set_text_colour (uint32_t argb)
 {
     text_colour = argb;
 }
