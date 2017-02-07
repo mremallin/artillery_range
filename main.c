@@ -24,7 +24,7 @@ update_frame (SDL_Event *e,
     handle_system_event(e);
     display_start_frame();
     display_set_text_cursor(0, 0);
-    display_printf("!\"#$%%&'()*+,-./012");
+    display_printf("!\"#$%%&'()*+,-./0123456789");
     display_finish_frame();
 }
 

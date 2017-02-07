@@ -127,7 +127,8 @@ display_putc (char c)
          char_draw_y++) {
         for (char_draw_x = 0; char_draw_x < sizeof(uint8_t) *8;
              char_draw_x++) {
-            /* Draw a line of the bitmap */
+            /* Draw a line of the bitmap. Each bit corresponds
+             * to a single pixel on screen.  */
             if (char_bitmap[char_draw_y] & (1 << (7 - char_draw_x))) {
                 screen_buffer[(char_x + char_draw_x) +
                               ((char_y+char_draw_y) * SCREEN_WIDTH)] =
