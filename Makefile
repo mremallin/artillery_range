@@ -7,10 +7,10 @@ ODIR=obj
 LDIR=/opt/local/lib
 LIBS=-L$(LDIR) -lsdl2
 
-_DEPS = main.h
+_DEPS = main.h display.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o
+_OBJ = main.o display.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 PROGNAME=artillery_range
