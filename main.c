@@ -52,8 +52,7 @@ static void
 update_frame (uint32_t frame_delta_ms)
 {
     scroll_x += (TEXT_SCROLL_SPEED_PX_MS / frame_delta_ms) / MS_PER_SEC;
-    SDL_Log("Scroll x: %u\n", scroll_x);
-    if (scroll_x == SCREEN_WIDTH) {
+    if (scroll_x >= SCREEN_WIDTH) {
         scroll_x = 0;
     }
     display_start_frame();
