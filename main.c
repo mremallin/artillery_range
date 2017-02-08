@@ -5,6 +5,7 @@
 #include "main.h"
 #include "display.h"
 #include "charset.h"
+#include "object.h"
 
 static bool quitting = false;
 
@@ -20,10 +21,6 @@ handle_events (SDL_Event *e)
         SDL_Log("Got a quit event. Exiting...");
     }
 }
-
-#define FRAME_MS_60FPS (1000/60)
-#define FRAME_MS_30FPS (1000/30)
-#define MS_PER_SEC (1000)
 
 static void
 display_framerate (uint32_t frame_ticks_ms)
@@ -45,19 +42,11 @@ display_framerate (uint32_t frame_ticks_ms)
     display_set_text_colour(old_text_colour);
 }
 
-static uint32_t scroll_x = 0;
-#define TEXT_SCROLL_SPEED_PX_MS (60 * 1000)
-
 static void
 update_frame (uint32_t frame_delta_ms)
 {
-    scroll_x += (TEXT_SCROLL_SPEED_PX_MS / frame_delta_ms) / MS_PER_SEC;
-    if (scroll_x >= SCREEN_WIDTH) {
-        scroll_x = 0;
-    }
     display_start_frame();
-    display_set_text_cursor(scroll_x, SCREEN_HEIGHT/4);
-    display_printf("I scroll!");
+    object_system_update(frame_delta_ms);
     display_set_text_cursor(0, 0);
     display_printf("!\"#$%%&'()*+,-./0123456789:;<=>?@"
                    "ABCDEFGHI                   JKLMNOPQRSTUVWXYZ");
@@ -123,6 +112,8 @@ main (int argc, char *argv[])
                      "Failed to initialize the display. Exiting...");
         return -1;
     }
+
+    object_system_init();
 
     /* Start the game! */
     main_event_loop();
