@@ -47,11 +47,7 @@ update_frame (uint32_t frame_delta_ms)
 {
     display_start_frame();
     object_system_update(frame_delta_ms);
-    display_set_text_cursor(0, 0);
-    display_printf("!\"#$%%&'()*+,-./0123456789:;<=>?@"
-                   "ABCDEFGHI                   JKLMNOPQRSTUVWXYZ");
-    display_set_text_cursor(0, SCREEN_HEIGHT/2);
-    display_printf_centred_x("Hello User!");
+    object_system_draw();
 #ifdef DEBUG_MODE
     display_framerate(frame_delta_ms);
 #endif
