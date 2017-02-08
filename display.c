@@ -136,7 +136,6 @@ display_putc (char c)
 {
     uint32_t char_x = text_cursor_x;
     uint32_t char_y = text_cursor_y;
-    uint32_t char_bitmap_line = 0;
     uint32_t char_draw_x = 0;
     uint32_t char_draw_y = 0;
     /* TODO: Don't support lower case. Force to upper. */

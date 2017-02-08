@@ -6,6 +6,7 @@
 #include "llist.h"
 #include "main.h"
 #include "display.h"
+#include "charset.h"
 
 static llist_head_st s_text_llist;
 
@@ -27,6 +28,79 @@ text_update_position (object_base_st    *base,
     }
 }
 
+static void
+text_putc (object_base_st *base, char c)
+{
+    text_obj_st *text = (text_obj_st *)base;
+    uint32_t char_x = text->cursor_x;
+    uint32_t char_y = text->cursor_y;
+    uint32_t char_draw_x = 0;
+    uint32_t char_draw_y = 0;
+    /* TODO: Don't support lower case. Force to upper. */
+    uint8_t *char_bitmap = charset_get_char_bitmap(toupper(c));
+    uint32_t *display_buffer = display_get_buffer();
+
+    /* Text objects don't support newlines right now */
+    assert(c != '\n');
+
+    /* Need to handle screen wrapping as well. */
+    if ((char_x + CHAR_WIDTH) >= SCREEN_WIDTH) {
+        if (OBJECT_TEST_FLAG(base, TEXT_OPTION_SCROLLING)) {
+            char_x = 0;
+        } else {
+            char_x = 0;
+            char_y += CHAR_NEWLINE_PIXELS_Y;
+        }
+    }
+
+    for (char_draw_y = 0; char_draw_y < sizeof(uint8_t) * 8;
+         char_draw_y++) {
+        for (char_draw_x = 0; char_draw_x < sizeof(uint8_t) * 8;
+             char_draw_x++) {
+            /* Draw a line of the bitmap. Each bit corresponds
+             * to a single pixel on screen.  */
+            if (char_bitmap[char_draw_y] & (1 << (7 - char_draw_x))) {
+                /* Scrolling means we need to wrap along the same line. */
+                if (OBJECT_TEST_FLAG(base, TEXT_OPTION_SCROLLING)) {
+                    if (char_x + char_draw_x >= SCREEN_WIDTH) {
+                        char_x = 0;
+                        if (text->cursor_x >= SCREEN_WIDTH) {
+                            text->cursor_x = 0;
+                        }
+                    }
+                    display_buffer[(char_x + char_draw_x) +
+                        ((char_y + char_draw_y) * SCREEN_WIDTH)] =
+                        text->colour;
+                } else {
+                    display_buffer[(char_x + char_draw_x) +
+                        ((char_y + char_draw_y) * SCREEN_WIDTH)] =
+                        text->colour;
+                }
+            }
+        }
+    }
+
+    if (OBJECT_TEST_FLAG(base, TEXT_OPTION_SCROLLING)) {
+        text->cursor_x += CHAR_WIDTH + CHAR_KERNING_PIXELS_X;
+        text->cursor_x = text->cursor_x % SCREEN_WIDTH;
+    } else {
+        text->cursor_x += CHAR_WIDTH + CHAR_KERNING_PIXELS_X;
+    }
+}
+
+void
+text_print (text_obj_st *text)
+{
+    uint32_t i = 0;
+    text->cursor_x = text->base.x;
+    text->cursor_y = text->base.y;
+
+    while (text->text[i] != 0) {
+        text_putc(&text->base, text->text[i]);
+        i++;
+    }
+}
+
 void
 text_draw (object_base_st   *base)
 {
@@ -36,7 +110,7 @@ text_draw (object_base_st   *base)
     text = (text_obj_st *)base;
     display_set_text_cursor(base->x, base->y);
     if (!OBJECT_TEST_FLAG(base, TEXT_OPTION_CENTRED_X)) {
-        display_printf(text->text);
+        text_print(text);
     } else {
         display_printf_centred_x(text->text);
     }
@@ -79,6 +153,7 @@ text_create (uint32_t x,
     text_obj->base.obj_api = &s_text_api;
     text_obj->base.flags = flags;
     text_obj->text = text;
+    text_obj->colour = 0xffffffff;
 
     llist_append(&s_text_llist,
                  &text_obj->base.elem);

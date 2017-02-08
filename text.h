@@ -16,6 +16,9 @@ typedef struct text_obj_st_ {
     object_base_st base;
     char *text;
     uint32_t flags;
+    uint32_t colour;
+    uint32_t cursor_x;
+    uint32_t cursor_y;
 } text_obj_st;
 
 void
