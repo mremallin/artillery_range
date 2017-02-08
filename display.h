@@ -3,6 +3,10 @@
 
 #include <SDL.h>
 
+#define COLOUR_GREEN    0xff00ff00
+#define COLOUR_YELLOW   0xffffff00
+#define COLOUR_RED      0xffff0000
+
 int
 display_init(SDL_Window *window);
 
@@ -34,6 +38,6 @@ void
 display_printf(const char *fmt, ...);
 
 void
-display_printf_centred(const char *fmt, ...);
+display_printf_centred_x(const char *fmt, ...);
 
 #endif /* __DISPLAY_H__ */

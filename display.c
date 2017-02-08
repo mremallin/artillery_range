@@ -175,7 +175,7 @@ display_putc (char c)
 }
 
 void
-display_printf_centred (const char *fmt, ...)
+display_printf_centred_x (const char *fmt, ...)
 {
     char buffer[100];
     uint32_t i = 0, chars_printed = 0;

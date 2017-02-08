@@ -9,8 +9,12 @@
 static bool quitting = false;
 
 static void
-handle_system_event (SDL_Event *e)
+handle_events (SDL_Event *e)
 {
+    if (e == NULL) {
+        return;
+    }
+
     if (e->type == SDL_QUIT) {
         quitting = true;
         SDL_Log("Got a quit event. Exiting...");
@@ -28,15 +32,12 @@ display_framerate (uint32_t frame_ticks_ms)
     display_set_text_cursor(0, SCREEN_HEIGHT - CHAR_HEIGHT);
 
     if (frame_ticks_ms <= FRAME_MS_60FPS) {
-        /* Green */
-        display_set_text_colour(0xff00ff00);
+        display_set_text_colour(COLOUR_GREEN);
     } else if (frame_ticks_ms > FRAME_MS_60FPS &&
                frame_ticks_ms < FRAME_MS_30FPS) {
-        /* Yellow */
-        display_set_text_colour(0xffffff00);
+        display_set_text_colour(COLOUR_YELLOW);
     } else {
-        /* Red */
-        display_set_text_colour(0xffff0000);
+        display_set_text_colour(COLOUR_RED);
     }
 
     display_printf("Frame ticks: %u", frame_ticks_ms);
@@ -44,16 +45,14 @@ display_framerate (uint32_t frame_ticks_ms)
 }
 
 static void
-update_frame (SDL_Event *e,
-              uint32_t frame_delta_ticks)
+update_frame (uint32_t frame_delta_ticks)
 {
-    handle_system_event(e);
     display_start_frame();
     display_set_text_cursor(0, 0);
     display_printf("!\"#$%%&'()*+,-./0123456789:;<=>?@"
                    "ABCDEFGHI                   JKLMNOPQRSTUVWXYZ");
     display_set_text_cursor(0, SCREEN_HEIGHT/2);
-    display_printf_centred("Hello User!");
+    display_printf_centred_x("Hello User!");
 #ifdef DEBUG_MODE
     display_framerate(frame_delta_ticks);
 #endif
@@ -69,17 +68,20 @@ main_event_loop (void)
     uint32_t frame_delta_ticks = 0;
 
     while (!quitting) {
-        while (SDL_PollEvent(&e) != 0) {
-            /* Bump the frame delta if we're too fast. */
-            if (frame_delta_ticks < 1) {
-                frame_delta_ticks = 1;
-            }
-
-            frame_start_ticks = SDL_GetTicks();
-            update_frame(&e, frame_delta_ticks);
-            frame_end_ticks = SDL_GetTicks();
-            frame_delta_ticks = frame_end_ticks - frame_start_ticks;
+        /* Bump the frame delta if we're too fast. */
+        if (frame_delta_ticks < 1) {
+            frame_delta_ticks = 1;
         }
+
+        frame_start_ticks = SDL_GetTicks();
+
+        while (SDL_PollEvent(&e) != 0) {
+            handle_events(&e);
+        }
+
+        update_frame(frame_delta_ticks);
+        frame_end_ticks = SDL_GetTicks();
+        frame_delta_ticks = frame_end_ticks - frame_start_ticks;
     }
 }
 
