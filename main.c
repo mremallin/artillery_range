@@ -23,6 +23,7 @@ handle_events (SDL_Event *e)
 
 #define FRAME_MS_60FPS (1000/60)
 #define FRAME_MS_30FPS (1000/30)
+#define MS_PER_SEC (1000)
 
 static void
 display_framerate (uint32_t frame_ticks_ms)
@@ -44,17 +45,27 @@ display_framerate (uint32_t frame_ticks_ms)
     display_set_text_colour(old_text_colour);
 }
 
+static uint32_t scroll_x = 0;
+#define TEXT_SCROLL_SPEED_PX_MS (60 * 1000)
+
 static void
-update_frame (uint32_t frame_delta_ticks)
+update_frame (uint32_t frame_delta_ms)
 {
+    scroll_x += (TEXT_SCROLL_SPEED_PX_MS / frame_delta_ms) / MS_PER_SEC;
+    SDL_Log("Scroll x: %u\n", scroll_x);
+    if (scroll_x == SCREEN_WIDTH) {
+        scroll_x = 0;
+    }
     display_start_frame();
+    display_set_text_cursor(scroll_x, SCREEN_HEIGHT/4);
+    display_printf("I scroll!");
     display_set_text_cursor(0, 0);
     display_printf("!\"#$%%&'()*+,-./0123456789:;<=>?@"
                    "ABCDEFGHI                   JKLMNOPQRSTUVWXYZ");
     display_set_text_cursor(0, SCREEN_HEIGHT/2);
     display_printf_centred_x("Hello User!");
 #ifdef DEBUG_MODE
-    display_framerate(frame_delta_ticks);
+    display_framerate(frame_delta_ms);
 #endif
     display_finish_frame();
 }
