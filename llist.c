@@ -88,5 +88,4 @@ llist_walk_destroy(llist_head_st *head,
         llist_unlink(old_elem);
         walker(old_elem, ctx);
     }
-
 }
