@@ -7,6 +7,14 @@
 #include "charset.h"
 #include "object.h"
 
+void
+main_intro_exit (void)
+{
+    SDL_Log("Transitioned out of the intro");
+}
+
+#include "game.sm"
+
 static bool quitting = false;
 
 static void

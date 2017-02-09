@@ -1,0 +1,16 @@
+#include "sm_compile.h"
+
+SM_EVENT_LIST_START(game)
+    SM_EVENT_LIST_ENTRY(game, KEY_PRESSED)
+SM_EVENT_LIST_END(game)
+
+SM_STATE_LIST_START(game)
+    SM_STATE_LIST_ENTRY(game, INTRO)
+    SM_STATE_LIST_ENTRY(game, MAIN_MENU)
+SM_STATE_LIST_END(game)
+
+SM_START(game)
+    SM_STATE_START(game, INTRO)
+        SM_STATE_EVENT(game, KEY_PRESSED, main_intro_exit, MAIN_MENU)
+    SM_STATE_END()
+SM_END()

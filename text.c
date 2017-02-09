@@ -68,10 +68,12 @@ text_putc (object_base_st *base, char c)
                             text->cursor_x = 0;
                         }
                     }
+                    /* No alpha blending with text. */
                     display_buffer[(char_x + char_draw_x) +
                         ((char_y + char_draw_y) * SCREEN_WIDTH)] =
                         text->colour;
                 } else {
+                    /* No alpha blending with text. */
                     display_buffer[(char_x + char_draw_x) +
                         ((char_y + char_draw_y) * SCREEN_WIDTH)] =
                         text->colour;
