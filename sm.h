@@ -14,14 +14,7 @@
 /* Define state */
 /* define transitions within (event, cb, next state) */
 
-typedef struct sm_st_ {
-    uint8_t current_state;
-} sm_st;
-
 void
-sm_init (sm_st *);
-
-void
-sm_step_state (sm_st *, sm_event_t);
+sm_step_state (sm_base_st *, sm_event_t);
 
 #endif /* __SM_H__ */

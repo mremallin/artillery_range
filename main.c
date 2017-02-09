@@ -6,9 +6,10 @@
 #include "display.h"
 #include "charset.h"
 #include "object.h"
+#include "sm.h"
 
 void
-main_intro_exit (void)
+intro_exit (void)
 {
     SDL_Log("Transitioned out of the intro");
 }
@@ -27,6 +28,12 @@ handle_events (SDL_Event *e)
     if (e->type == SDL_QUIT) {
         quitting = true;
         SDL_Log("Got a quit event. Exiting...");
+    }
+
+    if (e->type == SDL_KEYDOWN) {
+        if (e->key.keysym.sym == SDLK_RETURN) {
+            sm_step_state(&sm_game.base, sm_game_event_KEY_PRESSED);
+        }
     }
 }
 
