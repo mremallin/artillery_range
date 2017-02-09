@@ -27,4 +27,12 @@ llist_walk(llist_head_st *head,
            llist_walk_func walker,
            void *ctx);
 
+void
+llist_unlink(llist_elem_st *elem);
+
+void
+llist_walk_destroy(llist_head_st *head,
+                   llist_walk_func walker,
+                   void *ctx);
+
 #endif /* __LLIST_H__ */

@@ -28,12 +28,15 @@ void
 text_update_frame(uint32_t frame_tick_ms);
 
 void
-text_draw_frame();
+text_draw_frame(void);
 
 void
 text_create(uint32_t x,
             uint32_t y,
             char *text,
             uint32_t flags);
+
+void
+text_destroy_all(void);
 
 #endif /* __TEXT_H__ */

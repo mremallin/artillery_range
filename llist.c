@@ -50,3 +50,43 @@ llist_walk (llist_head_st *head,
         elem = elem->next;
     }
 }
+
+void
+llist_unlink (llist_elem_st *elem)
+{
+    llist_elem_st *prev_elem, *next_elem;
+
+    prev_elem = elem->prev;
+    next_elem = elem->next;
+
+    if (prev_elem) {
+        prev_elem->next = next_elem;
+    }
+
+    if (next_elem) {
+        next_elem->prev = prev_elem;
+    }
+
+    elem->next = NULL;
+    elem->prev = NULL;
+}
+
+void
+llist_walk_destroy(llist_head_st *head,
+                   llist_walk_func walker,
+                   void *ctx)
+{
+    llist_elem_st *elem = NULL;
+    llist_elem_st *old_elem = NULL;
+
+    assert(head);
+
+    elem = head->list_head;
+    while (elem) {
+        old_elem = elem;
+        elem = elem->next;
+        llist_unlink(old_elem);
+        walker(old_elem, ctx);
+    }
+
+}

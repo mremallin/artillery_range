@@ -8,7 +8,6 @@
 #define FRAME_MS_30FPS (1000/30)
 #define MS_PER_SEC (1000)
 
-
 #define DEBUG_MODE 1
 
 #endif /* __MAIN_H__ */

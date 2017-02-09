@@ -127,17 +127,6 @@ void
 text_system_init (void)
 {
     llist_init(&s_text_llist);
-
-    text_create(0, SCREEN_HEIGHT/4,
-                "I Scroll!",
-                TEXT_OPTION_SCROLLING);
-    text_create(0, 0,
-                "!\"#$%%&'()*+,-./0123456789:;<=>?@"
-                "ABCDEFGHI                   JKLMNOPQRSTUVWXYZ",
-                TEXT_OPTION_NONE);
-    text_create(0, SCREEN_HEIGHT/2,
-                "Hello User!",
-                TEXT_OPTION_CENTRED_X);
 }
 
 void
@@ -162,6 +151,12 @@ text_create (uint32_t x,
 }
 
 void
+text_free (text_obj_st *text)
+{
+    free(text);
+}
+
+static void
 text_update_walk_cb (llist_elem_st *elem,
                      void *ctx)
 {
@@ -180,7 +175,7 @@ text_update_frame (uint32_t frame_tick_ms)
                &frame_tick_ms);
 }
 
-void
+static void
 text_draw_walk_cb (llist_elem_st *elem,
                    void *ctx)
 {
@@ -189,9 +184,24 @@ text_draw_walk_cb (llist_elem_st *elem,
 }
 
 void
-text_draw_frame ()
+text_draw_frame (void)
 {
     llist_walk(&s_text_llist,
                text_draw_walk_cb,
                NULL);
+}
+
+static void
+text_destroy_cb (llist_elem_st *elem,
+                 void *ctx)
+{
+    text_free((text_obj_st *)elem);
+}
+
+void
+text_destroy_all (void)
+{
+    llist_walk_destroy(&s_text_llist,
+                       text_destroy_cb,
+                       NULL);
 }
