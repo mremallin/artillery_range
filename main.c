@@ -31,6 +31,17 @@ handle_events (SDL_Event *e)
             sm_step_state(&sm_game.base, sm_game_event_KEY_PRESSED);
         }
     }
+
+    if (e->type == SDL_USEREVENT) {
+        void (*p)(void *) = e->user.data1;
+        p(e->user.data2);
+    }
+}
+
+void
+main_sm_intro_timer_expired (void)
+{
+    sm_step_state(&sm_game.base, sm_game_event_INTRO_TIMER_EXPIRY);
 }
 
 static void
@@ -96,7 +107,7 @@ main (int argc, char *argv[])
 {
     SDL_Window *window = NULL;
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
                      "SDL could not initialize! SDL_Error: %s",
                      SDL_GetError());
