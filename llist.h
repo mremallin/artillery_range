@@ -28,7 +28,8 @@ llist_walk(llist_head_st *head,
            void *ctx);
 
 void
-llist_unlink(llist_elem_st *elem);
+llist_unlink(llist_head_st *head,
+             llist_elem_st *elem);
 
 void
 llist_walk_destroy(llist_head_st *head,

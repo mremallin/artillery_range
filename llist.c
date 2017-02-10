@@ -52,7 +52,8 @@ llist_walk (llist_head_st *head,
 }
 
 void
-llist_unlink (llist_elem_st *elem)
+llist_unlink (llist_head_st *head,
+              llist_elem_st *elem)
 {
     llist_elem_st *prev_elem, *next_elem;
 
@@ -61,6 +62,10 @@ llist_unlink (llist_elem_st *elem)
 
     if (prev_elem) {
         prev_elem->next = next_elem;
+    } else {
+        /* No previous means we're the first element. Unlink
+         * from the head. */
+        head->list_head = NULL;
     }
 
     if (next_elem) {
@@ -85,7 +90,7 @@ llist_walk_destroy(llist_head_st *head,
     while (elem) {
         old_elem = elem;
         elem = elem->next;
-        llist_unlink(old_elem);
+        llist_unlink(head, old_elem);
         walker(old_elem, ctx);
     }
 }
