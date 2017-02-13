@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <assert.h>
 
 #include "main.h"
 #include "display.h"
@@ -13,6 +14,7 @@
 #include "game.sm"
 
 static bool quitting = false;
+static main_game_mode_api_st *s_current_mode_api = NULL;
 
 static void
 handle_events (SDL_Event *e)
@@ -27,14 +29,26 @@ handle_events (SDL_Event *e)
     }
 
     if (e->type == SDL_KEYDOWN) {
+        if (s_current_mode_api && s_current_mode_api->input_handler) {
+            s_current_mode_api->input_handler(e);
+        }
+
         if (e->key.keysym.sym == SDLK_RETURN) {
             sm_step_state(&sm_game.base, sm_game_event_KEY_PRESSED);
         }
     }
 
     if (e->type == SDL_USEREVENT) {
-        void (*p)(void *) = e->user.data1;
-        p(e->user.data2);
+        switch (e->user.code) {
+            case USER_EVENT_CALLBACK_TYPE: {
+                void (*p)(void *) = e->user.data1;
+                p(e->user.data2);
+                break;
+            }
+            default:
+                /* Catch any unhandled events. */
+                assert(false);
+        }
     }
 }
 
@@ -42,6 +56,18 @@ void
 main_sm_intro_timer_expired (void)
 {
     sm_step_state(&sm_game.base, sm_game_event_INTRO_TIMER_EXPIRY);
+}
+
+void
+main_sm_intro_key_pressed (void)
+{
+    sm_step_state(&sm_game.base, sm_game_event_KEY_PRESSED);
+}
+
+void
+main_sm_install_game_mode_api (main_game_mode_api_st *api)
+{
+    s_current_mode_api = api;
 }
 
 static void
