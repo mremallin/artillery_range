@@ -7,7 +7,7 @@ ODIR=obj
 LDIR=/opt/local/lib
 LIBS=-L$(LDIR) -lsdl2
 
-_DEPS = main.h display.h charset.h object.h text.h llist.h sm.h sm_defs.h game.sm intro.h menu.h
+_DEPS = main.h display.h charset.h object.h text.h llist.h sm.h sm_defs.h game.sm intro.h menu.h utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
 _OBJ = main.o display.o charset.o object.o text.o llist.o sm.o intro.o menu.o
