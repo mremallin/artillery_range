@@ -19,7 +19,6 @@ typedef enum user_sdl_event_code_t_ {
 } main_sdl_event_code_t;
 
 typedef void (*gm_input_handler_func)(SDL_Event *);
-
 typedef struct main_game_mode_api_st_ {
     gm_input_handler_func input_handler;
 } main_game_mode_api_st;
@@ -29,6 +28,9 @@ main_sm_intro_timer_expired(void);
 
 void
 main_sm_intro_key_pressed(void);
+
+void
+main_sm_quit(void);
 
 void
 main_sm_install_game_mode_api(main_game_mode_api_st *);

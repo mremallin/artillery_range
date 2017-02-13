@@ -16,6 +16,13 @@
 static bool quitting = false;
 static main_game_mode_api_st *s_current_mode_api = NULL;
 
+void
+main_sm_quit (void)
+{
+    quitting = true;
+    SDL_Log("Got a quit event. Exiting...");
+}
+
 static void
 handle_events (SDL_Event *e)
 {
@@ -24,8 +31,7 @@ handle_events (SDL_Event *e)
     }
 
     if (e->type == SDL_QUIT) {
-        quitting = true;
-        SDL_Log("Got a quit event. Exiting...");
+        main_sm_quit();
     }
 
     if (e->type == SDL_KEYDOWN) {
