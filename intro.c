@@ -68,6 +68,6 @@ intro_start (void)
 void
 intro_exit (void)
 {
-    text_destroy_all();
+    object_clear_list(OBJECT_LIST_TEXT);
     main_menu_start();
 }

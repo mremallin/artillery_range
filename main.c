@@ -13,13 +13,13 @@
 
 #include "game.sm"
 
-static bool quitting = false;
+static bool s_quitting = false;
 static main_game_mode_api_st *s_current_mode_api = NULL;
 
 void
 main_sm_quit (void)
 {
-    quitting = true;
+    s_quitting = true;
     SDL_Log("Got a quit event. Exiting...");
 }
 
@@ -116,7 +116,7 @@ main_event_loop (void)
     uint32_t frame_end_ticks = 0;
     uint32_t frame_delta_ticks = 0;
 
-    while (!quitting) {
+    while (!s_quitting) {
         /* Bump the frame delta if we're too fast. */
         if (frame_delta_ticks < 1) {
             frame_delta_ticks = 1;

@@ -118,16 +118,17 @@ text_draw (object_base_st   *base)
     }
 }
 
+void
+text_free (object_base_st *base)
+{
+    free(base);
+}
+
 static obj_api_st s_text_api = {
     .obj_upd_pos = text_update_position,
     .obj_draw = text_draw,
+    .obj_destroy = text_free,
 };
-
-void
-text_system_init (void)
-{
-    llist_init(&s_text_llist);
-}
 
 void
 text_create (uint32_t x,
@@ -146,62 +147,6 @@ text_create (uint32_t x,
     text_obj->text = text;
     text_obj->colour = 0xffffffff;
 
-    llist_append(&s_text_llist,
-                 &text_obj->base.elem);
-}
-
-void
-text_free (text_obj_st *text)
-{
-    free(text);
-}
-
-static void
-text_update_walk_cb (llist_elem_st *elem,
-                     void *ctx)
-{
-    uint32_t frame_tick_ms = *(uint32_t *)ctx;
-
-    text_obj_st *text = (text_obj_st *)elem;
-
-    text->base.obj_api->obj_upd_pos(&text->base, frame_tick_ms);
-}
-
-void
-text_update_frame (uint32_t frame_tick_ms)
-{
-    llist_walk(&s_text_llist,
-               text_update_walk_cb,
-               &frame_tick_ms);
-}
-
-static void
-text_draw_walk_cb (llist_elem_st *elem,
-                   void *ctx)
-{
-    text_obj_st *text = (text_obj_st *)elem;
-    text->base.obj_api->obj_draw(&text->base);
-}
-
-void
-text_draw_frame (void)
-{
-    llist_walk(&s_text_llist,
-               text_draw_walk_cb,
-               NULL);
-}
-
-static void
-text_destroy_cb (llist_elem_st *elem,
-                 void *ctx)
-{
-    text_free((text_obj_st *)elem);
-}
-
-void
-text_destroy_all (void)
-{
-    llist_walk_destroy(&s_text_llist,
-                       text_destroy_cb,
-                       NULL);
+    object_add_to_list(&text_obj->base,
+                       OBJECT_LIST_TEXT);
 }

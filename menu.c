@@ -2,6 +2,7 @@
 #include "text.h"
 #include "main.h"
 #include "charset.h"
+#include "utils.h"
 
 typedef void (*menu_entry_func)(void);
 typedef struct main_menu_entry_st_ {
@@ -49,7 +50,7 @@ main_menu_start (void)
     main_menu_install_api();
 
     for (i = 0;
-         i < sizeof(s_main_menu_entries) / sizeof(s_main_menu_entries[0]);
+         i < ARRAY_SIZEOF(s_main_menu_entries);
          i++) {
         text_create(0, y_offset, s_main_menu_entries[i].menu_text,
                     TEXT_OPTION_CENTRED_X);
