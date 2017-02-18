@@ -9,4 +9,7 @@
 uint8_t *
 charset_get_char_bitmap(char c);
 
+size_t
+charset_get_string_pixel_width(char *str);
+
 #endif /* __CHARSET_H__ */

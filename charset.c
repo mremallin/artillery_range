@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <string.h>
 
 #include "charset.h"
 
@@ -485,4 +486,12 @@ uint8_t *
 charset_get_char_bitmap (char c)
 {
     return charset[c];
+}
+
+size_t
+charset_get_string_pixel_width (char *str)
+{
+    size_t strl = strlen(str);
+
+    return (strl * CHAR_WIDTH) + (strl * CHAR_KERNING_PIXELS_X);
 }

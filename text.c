@@ -8,9 +8,7 @@
 #include "display.h"
 #include "charset.h"
 
-static llist_head_st s_text_llist;
-
-void
+static void
 text_update_position (object_base_st    *base,
                       uint32_t           frame_tick_ms)
 {
@@ -144,6 +142,7 @@ text_create (uint32_t x,
     text_obj->base.obj_type = OBJECT_TYPE_TEXT;
     text_obj->base.obj_api = &s_text_api;
     text_obj->base.flags = flags;
+
     text_obj->text = text;
     text_obj->colour = 0xffffffff;
 

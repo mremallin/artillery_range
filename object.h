@@ -16,6 +16,7 @@ typedef enum object_list_et_ {
 typedef enum object_type_et_ {
     OBJECT_TYPE_NONE = 0,
     OBJECT_TYPE_TEXT,
+    OBJECT_TYPE_SPRITE,
 } object_type_et;
 
 struct object_base_st_;
