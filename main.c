@@ -10,6 +10,7 @@
 #include "sm.h"
 #include "text.h"
 #include "intro.h"
+#include "game.h"
 
 #include "game.sm"
 
@@ -59,8 +60,15 @@ main_sm_intro_exit (void)
 }
 
 void
+main_sm_game_start (void)
+{
+    sm_step_state(&sm_game.base, sm_game_event_GAME_START);
+}
+
+void
 main_sm_install_game_mode_api (main_game_mode_api_st *api)
 {
+    assert(api);
     s_current_mode_api = api;
 }
 
@@ -158,6 +166,7 @@ main (int argc, char *argv[])
     main_event_loop();
 
     /* Exit */
+    object_free_all_lists();
     display_shutdown();
     SDL_DestroyWindow(window);
     SDL_Quit();

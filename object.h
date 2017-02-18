@@ -61,4 +61,7 @@ object_add_to_list(object_base_st *,
 void
 object_clear_list(object_list_et);
 
+void
+object_free_all_lists(void);
+
 #endif /* __OBJECT_H__ */

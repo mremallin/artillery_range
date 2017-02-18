@@ -86,3 +86,14 @@ object_clear_list (object_list_et obj_list)
                        object_del_walk_cb,
                        NULL);
 }
+
+void
+object_free_all_lists (void)
+{
+    int i = 0;
+
+    for (i = 0; i < OBJECT_LIST_MAX; i++) {
+        object_clear_list(i);
+    }
+}
+

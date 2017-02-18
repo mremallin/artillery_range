@@ -21,7 +21,7 @@ SM_START(game)
         SM_STATE_EVENT(game, INTRO_EXIT, intro_exit, MAIN_MENU)
     SM_STATE_END()
     SM_STATE_START(game, MAIN_MENU)
-        SM_STATE_EVENT(game, GAME_START, NULL, MAIN_GAME)
+        SM_STATE_EVENT(game, GAME_START, game_start, MAIN_GAME)
     SM_STATE_END()
 SM_END()
 

@@ -23,6 +23,7 @@ static uint32_t s_current_selection = 0;
 void
 menu_start_game (void)
 {
+    main_sm_game_start();
 }
 
 void

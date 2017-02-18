@@ -32,4 +32,7 @@ main_sm_quit(void);
 void
 main_sm_install_game_mode_api(main_game_mode_api_st *);
 
+void
+main_sm_game_start(void);
+
 #endif /* __MAIN_H__ */
