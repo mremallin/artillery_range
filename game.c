@@ -2,6 +2,7 @@
 #include "text.h"
 #include "main.h"
 #include "object.h"
+#include "line.h"
 
 #include <SDL.h>
 
@@ -27,6 +28,8 @@ game_start (void)
     game_install_api();
     text_create(0, 0, "Game goes here",
             TEXT_OPTION_CENTRED_X);
+    line_create(20, 20, 20, 40, 0xffffffff, LINE_FLAG_BACKGROUND);
+    line_create(20, 20, 40, 20, 0xffffffff, LINE_FLAG_BACKGROUND);
 }
 
 void

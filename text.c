@@ -3,7 +3,6 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#include "llist.h"
 #include "main.h"
 #include "display.h"
 #include "charset.h"
