@@ -6,7 +6,7 @@
 
 #include "object.h"
 
-#define TEXT_SCROLL_SPEED_PX_MS (60 * 1000)
+#define TEXT_SCROLL_SPEED_PX_MS (60.0f)
 
 #define TEXT_OPTION_NONE        (0)
 #define TEXT_OPTION_SCROLLING   (1 << 0)

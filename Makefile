@@ -1,11 +1,10 @@
 IDIR =.
 CC=gcc
-CFLAGS=-g -I$(IDIR) -I/opt/local/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE
+CFLAGS=-g -I$(IDIR) -I/opt/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE
 
 ODIR=obj
 
-LDIR=/opt/local/lib
-LIBS=-L$(LDIR) -lsdl2
+LIBS=-L/opt/local/lib -L/usr/lib/x86_64-linux-gnu -lSDL2
 
 _DEPS = main.h display.h charset.h object.h text.h llist.h sm.h sm_defs.h game.sm intro.h menu.h utils.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))

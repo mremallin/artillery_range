@@ -22,7 +22,7 @@ text_update_position (object_base_st    *base,
         return;
     }
 
-    base->x += (TEXT_SCROLL_SPEED_PX_MS / frame_tick_ms) / MS_PER_SEC;
+    base->x += (TEXT_SCROLL_SPEED_PX_MS * frame_tick_ms) / MS_PER_SEC;
     if (base->x >= SCREEN_WIDTH) {
         base->x = 0;
     }
@@ -94,8 +94,8 @@ void
 text_print (text_obj_st *text)
 {
     uint32_t i = 0;
-    text->cursor_x = text->base.x;
-    text->cursor_y = text->base.y;
+    text->cursor_x = (uint32_t)text->base.x;
+    text->cursor_y = (uint32_t)text->base.y;
 
     while (text->text[i] != 0) {
         text_putc(&text->base, text->text[i]);
@@ -110,7 +110,7 @@ text_draw (object_base_st   *base)
     assert(base->obj_type == OBJECT_TYPE_TEXT);
 
     text = (text_obj_st *)base;
-    display_set_text_cursor(base->x, base->y);
+    display_set_text_cursor((uint32_t)base->x, (uint32_t)base->y);
     if (!OBJECT_TEST_FLAG(base, TEXT_OPTION_CENTRED_X)) {
         text_print(text);
     } else {
