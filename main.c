@@ -34,14 +34,8 @@ handle_events (SDL_Event *e)
         main_sm_quit();
     }
 
-    if (e->type == SDL_KEYDOWN) {
-        if (s_current_mode_api && s_current_mode_api->input_handler) {
-            s_current_mode_api->input_handler(e);
-        }
-
-        if (e->key.keysym.sym == SDLK_RETURN) {
-            sm_step_state(&sm_game.base, sm_game_event_KEY_PRESSED);
-        }
+    if (s_current_mode_api && s_current_mode_api->input_handler) {
+        s_current_mode_api->input_handler(e);
     }
 
     if (e->type == SDL_USEREVENT) {
@@ -59,15 +53,9 @@ handle_events (SDL_Event *e)
 }
 
 void
-main_sm_intro_timer_expired (void)
+main_sm_intro_exit (void)
 {
-    sm_step_state(&sm_game.base, sm_game_event_INTRO_TIMER_EXPIRY);
-}
-
-void
-main_sm_intro_key_pressed (void)
-{
-    sm_step_state(&sm_game.base, sm_game_event_KEY_PRESSED);
+    sm_step_state(&sm_game.base, sm_game_event_INTRO_EXIT);
 }
 
 void

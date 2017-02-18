@@ -12,7 +12,7 @@ intro_input_handler (SDL_Event *e)
 {
     if (e->type == SDL_KEYDOWN) {
         if (e->key.keysym.sym == SDLK_RETURN) {
-            main_sm_intro_key_pressed();
+            main_sm_intro_exit();
         }
     }
 }
@@ -30,7 +30,7 @@ intro_install_api (void)
 static void
 intro_timer_evt_cb (void *ctx)
 {
-    main_sm_intro_timer_expired();
+    main_sm_intro_exit();
 }
 
 static uint32_t

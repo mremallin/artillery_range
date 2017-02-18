@@ -24,10 +24,7 @@ typedef struct main_game_mode_api_st_ {
 } main_game_mode_api_st;
 
 void
-main_sm_intro_timer_expired(void);
-
-void
-main_sm_intro_key_pressed(void);
+main_sm_intro_timer_exit(void);
 
 void
 main_sm_quit(void);
