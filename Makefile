@@ -1,6 +1,6 @@
 IDIR =.
 CC=gcc
-CFLAGS=-g -I$(IDIR) -I/opt/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE
+CFLAGS=-g -I$(IDIR) -I/usr/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE
 
 ODIR=obj
 

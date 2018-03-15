@@ -2,3 +2,4 @@
 *.o
 *.out
 artillery_range
+.DS_Store
