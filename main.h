@@ -27,6 +27,9 @@ void
 main_sm_intro_timer_exit(void);
 
 void
+main_sm_intro_exit(void);
+
+void
 main_sm_quit(void);
 
 void
