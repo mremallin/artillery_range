@@ -51,5 +51,5 @@ doxygen:
 .PHONY: clean doxygen
 
 clean:
-	rm -f $(ODIR)/*.o *~ $(PROGNAME) $(INCDIR)/*~
+	rm -f $(ODIR)/*.o $(TEST_ODIR).*.o *~ $(PROGNAME) $(INCDIR)/*~ $(TESTNAME)
 	rm -r doxygen
