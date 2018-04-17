@@ -3,3 +3,4 @@
 *.out
 artillery_range
 .DS_Store
+doxygen*

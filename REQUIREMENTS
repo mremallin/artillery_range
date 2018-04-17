@@ -1,0 +1,6 @@
+Debian:
+libsdl2-dev
+
+(Optional)
+doxygen
+graphviz

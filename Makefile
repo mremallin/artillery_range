@@ -23,7 +23,11 @@ $(ODIR):
 $(ODIR)/%.o: %.c $(DEPS) $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-.PHONY: clean
+doxygen:
+	doxygen
+
+.PHONY: clean doxygen
 
 clean:
-	rm -f $(ODIR)/*.o *~ $(PROGNAME) $(INCDIR)/*~ 
+	rm -f $(ODIR)/*.o *~ $(PROGNAME) $(INCDIR)/*~
+	rm -r doxygen
