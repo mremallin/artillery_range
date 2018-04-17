@@ -6,7 +6,9 @@
 void
 llist_init (llist_head_st *head)
 {
-    memset(head, 0, sizeof(*head));
+    if (head) {
+        memset(head, 0, sizeof(*head));
+    }
 }
 
 void

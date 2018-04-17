@@ -2,5 +2,8 @@
 *.o
 *.out
 artillery_range
+artillery_range_test
 .DS_Store
 doxygen*
+obj
+obj_test

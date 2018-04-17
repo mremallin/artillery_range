@@ -2,5 +2,9 @@ Debian:
 libsdl2-dev
 
 (Optional)
+Documentation:
 doxygen
 graphviz
+
+UT:
+cpputest
