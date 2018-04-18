@@ -34,9 +34,11 @@ $(ODIR)/%.o: %.c $(DEPS) $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Unit testing rules
+test: $(TESTNAME)
+	./$(TESTNAME)
+
 $(TESTNAME): $(TEST_OBJ) $(UT_OBJ)
 	g++ -o $@ $^ $(CFLAGS) $(TEST_LIBS)
-	./$(TESTNAME)
 
 $(TEST_ODIR):
 	mkdir $(TEST_ODIR)
