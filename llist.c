@@ -6,9 +6,8 @@
 void
 llist_init (llist_head_st *head)
 {
-    if (head) {
-        memset(head, 0, sizeof(*head));
-    }
+    assert(head);
+    memset(head, 0, sizeof(*head));
 }
 
 void
@@ -18,12 +17,14 @@ llist_append (llist_head_st *head,
     llist_elem_st *current = NULL;
 
     assert(head);
+    assert(elem);
+
+    head->list_count++;
 
     if (head->list_head == NULL) {
         head->list_head = elem;
         elem->next = NULL;
         elem->prev = NULL;
-
         return;
     }
 
@@ -67,7 +68,7 @@ llist_unlink (llist_head_st *head,
     } else {
         /* No previous means we're the first element. Unlink
          * from the head. */
-        head->list_head = NULL;
+        head->list_head = next_elem;
     }
 
     if (next_elem) {
@@ -76,6 +77,7 @@ llist_unlink (llist_head_st *head,
 
     elem->next = NULL;
     elem->prev = NULL;
+    head->list_count--;
 }
 
 void
