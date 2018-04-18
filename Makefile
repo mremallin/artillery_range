@@ -1,6 +1,7 @@
 IDIR =.
 CC=gcc
 CFLAGS=-g -I$(IDIR) -I/usr/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE
+TEST_CFLAGS=-fprofile-arcs -ftest-coverage
 
 ODIR=obj
 TEST_ODIR=$(ODIR)_test
@@ -34,6 +35,7 @@ $(ODIR)/%.o: %.c $(DEPS) $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 # Unit testing rules
+test: $(eval CFLAGS += $(TEST_CFLAGS))
 test: $(TESTNAME)
 	./$(TESTNAME)
 
@@ -50,8 +52,19 @@ $(TEST_ODIR)/%.o: test/%.cpp $(DEPS) $(TEST_ODIR)
 doxygen:
 	doxygen
 
-.PHONY: clean doxygen
+# Code Coverage
+lcov: test
+	mkdir lcov && \
+	cd lcov && \
+	lcov --directory ../obj --directory ../obj_test --capture --rc lcov_branch_coverage=1 --output-file $(TESTNAME).info && \
+	genhtml --rc lcov_branch_coverage=1 $(TESTNAME).info
+
+
+
+.PHONY: clean doxygen lcov
 
 clean:
-	rm -f $(ODIR)/*.o $(TEST_ODIR).*.o *~ $(PROGNAME) $(INCDIR)/*~ $(TESTNAME)
-	rm -r doxygen
+	-@rm -f $(ODIR)/*.o $(TEST_ODIR).*.o *~ $(PROGNAME) $(INCDIR)/*~ $(TESTNAME) || true
+	-@rm -r doxygen || true
+	-@rm -r lcov || true
+	-@rm -r $(PROGNAME) || true
