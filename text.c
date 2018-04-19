@@ -6,6 +6,7 @@
 #include "main.h"
 #include "display.h"
 #include "charset.h"
+#include "colours.h"
 
 static void
 text_update_position (object_base_st    *base,
@@ -141,7 +142,7 @@ text_create (uint32_t x,
     text_obj->base.flags = flags;
 
     text_obj->text = text;
-    text_obj->colour = 0xffffffff;
+    text_obj->colour = COLOUR_WHITE;
 
     object_add_to_list(&text_obj->base,
                        OBJECT_LIST_TEXT);

@@ -6,6 +6,7 @@
 #include "main.h"
 #include "display.h"
 #include "charset.h"
+#include "colours.h"
 
 static SDL_Texture *screen_texture;
 static SDL_Renderer *renderer;
@@ -14,7 +15,7 @@ static uint32_t *screen_buffer;
 /* Text is drawn with the cursor being the upper left corner of the character */
 static uint32_t text_cursor_x = 0;
 static uint32_t text_cursor_y = 0;
-static uint32_t text_colour = 0xffffffff;
+static uint32_t text_colour = COLOUR_WHITE;
 
 uint32_t *
 display_get_buffer(void)

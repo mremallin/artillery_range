@@ -4,6 +4,7 @@
 #include "charset.h"
 #include "utils.h"
 #include "sprite.h"
+#include "colours.h"
 
 #include <assert.h>
 
@@ -103,7 +104,7 @@ main_menu_start (void)
                   charset_get_char_bitmap('>'),
                   CHAR_WIDTH,
                   CHAR_HEIGHT,
-                  0xffffffff,
+                  COLOUR_WHITE,
                   main_menu_update_selection_sprite,
                   SPRITE_FLAG_FOREGROUND);
 }
