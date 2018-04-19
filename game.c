@@ -3,6 +3,7 @@
 #include "main.h"
 #include "object.h"
 #include "line.h"
+#include "colours.h"
 
 #include <SDL.h>
 
@@ -24,12 +25,15 @@ game_install_api (void)
 void
 game_start (void)
 {
+    object_base_st *line;
     object_free_all_lists();
     game_install_api();
     text_create(0, 0, "Game goes here",
             TEXT_OPTION_CENTRED_X);
-    line_create(20, 20, 20, 40, 0xffffffff, LINE_FLAG_BACKGROUND);
-    line_create(20, 20, 40, 20, 0xffffffff, LINE_FLAG_BACKGROUND);
+    line = line_create(20, 20, 20, 40, COLOUR_WHITE);
+    object_add_to_list(line, OBJECT_LIST_BACKGROUND);
+    line = line_create(20, 20, 40, 20, COLOUR_WHITE);
+    object_add_to_list(line, OBJECT_LIST_BACKGROUND);
 }
 
 void

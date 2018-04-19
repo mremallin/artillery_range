@@ -11,6 +11,7 @@
 #include "text.h"
 #include "intro.h"
 #include "game.h"
+#include "colours.h"
 
 #include "game.sm"
 

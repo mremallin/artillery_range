@@ -3,10 +3,6 @@
 
 #include <SDL.h>
 
-#define COLOUR_GREEN    0xff00ff00
-#define COLOUR_YELLOW   0xffffff00
-#define COLOUR_RED      0xffff0000
-
 int
 display_init(SDL_Window *window);
 
