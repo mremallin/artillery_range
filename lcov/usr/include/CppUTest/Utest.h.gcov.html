@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - artillery_range_test.info - /usr/include/CppUTest/Utest.h</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../../index.html">top level</a> - <a href="index.html">usr/include/CppUTest</a> - Utest.h<span style="font-size: 80%;"> (source / <a href="Utest.h.func-sort-c.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">artillery_range_test.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2018-04-18 22:52:05</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntryHi">-</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            :  * Copyright (c) 2007, Michael Feathers, James Grenning and Bas Vodde
+<span class="lineNum">       3 </span>                :            :  * All rights reserved.
+<span class="lineNum">       4 </span>                :            :  *
+<span class="lineNum">       5 </span>                :            :  * Redistribution and use in source and binary forms, with or without
+<span class="lineNum">       6 </span>                :            :  * modification, are permitted provided that the following conditions are met:
+<span class="lineNum">       7 </span>                :            :  *     * Redistributions of source code must retain the above copyright
+<span class="lineNum">       8 </span>                :            :  *       notice, this list of conditions and the following disclaimer.
+<span class="lineNum">       9 </span>                :            :  *     * Redistributions in binary form must reproduce the above copyright
+<span class="lineNum">      10 </span>                :            :  *       notice, this list of conditions and the following disclaimer in the
+<span class="lineNum">      11 </span>                :            :  *       documentation and/or other materials provided with the distribution.
+<span class="lineNum">      12 </span>                :            :  *     * Neither the name of the &lt;organization&gt; nor the
+<span class="lineNum">      13 </span>                :            :  *       names of its contributors may be used to endorse or promote products
+<span class="lineNum">      14 </span>                :            :  *       derived from this software without specific prior written permission.
+<span class="lineNum">      15 </span>                :            :  *
+<span class="lineNum">      16 </span>                :            :  * THIS SOFTWARE IS PROVIDED BY THE EARLIER MENTIONED AUTHORS ``AS IS'' AND ANY
+<span class="lineNum">      17 </span>                :            :  * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+<span class="lineNum">      18 </span>                :            :  * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+<span class="lineNum">      19 </span>                :            :  * DISCLAIMED. IN NO EVENT SHALL &lt;copyright holder&gt; BE LIABLE FOR ANY
+<span class="lineNum">      20 </span>                :            :  * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+<span class="lineNum">      21 </span>                :            :  * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+<span class="lineNum">      22 </span>                :            :  * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+<span class="lineNum">      23 </span>                :            :  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+<span class="lineNum">      24 </span>                :            :  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+<span class="lineNum">      25 </span>                :            :  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+<span class="lineNum">      26 </span>                :            :  */
+<span class="lineNum">      27 </span>                :            : 
+<span class="lineNum">      28 </span>                :            : // This file contains the Test class along with the macros which make effective
+<span class="lineNum">      29 </span>                :            : // in the harness.
+<span class="lineNum">      30 </span>                :            : 
+<span class="lineNum">      31 </span>                :            : #ifndef D_UTest_h
+<span class="lineNum">      32 </span>                :            : #define D_UTest_h
+<span class="lineNum">      33 </span>                :            : 
+<span class="lineNum">      34 </span>                :            : #include &quot;SimpleString.h&quot;
+<span class="lineNum">      35 </span>                :            : 
+<span class="lineNum">      36 </span>                :            : class TestResult;
+<span class="lineNum">      37 </span>                :            : class TestPlugin;
+<span class="lineNum">      38 </span>                :            : class TestFailure;
+<span class="lineNum">      39 </span>                :            : class TestFilter;
+<span class="lineNum">      40 </span>                :            : class TestTerminator;
+<span class="lineNum">      41 </span>                :            : 
+<span class="lineNum">      42 </span>                :            : extern bool doubles_equal(double d1, double d2, double threshold);
+<span class="lineNum">      43 </span>                :            : 
+<span class="lineNum">      44 </span>                :            : //////////////////// Utest
+<span class="lineNum">      45 </span>                :            : 
+<span class="lineNum">      46 </span>                :            : class UtestShell;
+<span class="lineNum">      47 </span>                :            : 
+<span class="lineNum">      48 </span>                :            : class Utest
+<span class="lineNum">      49 </span>                :            : {
+<span class="lineNum">      50 </span>                :            : public:
+<span class="lineNum">      51 </span>                :            :     Utest();
+<span class="lineNum">      52 </span>                :            :     virtual ~Utest();
+<span class="lineNum">      53 </span>                :            :     virtual void run();
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :            :     virtual void setup();
+<span class="lineNum">      56 </span>                :            :     virtual void teardown();
+<span class="lineNum">      57 </span>                :            :     virtual void testBody();
+<span class="lineNum">      58 </span>                :            : };
+<span class="lineNum">      59 </span>                :            : 
+<span class="lineNum">      60 </span>                :            : //////////////////// TestTerminator
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            : class TestTerminator
+<span class="lineNum">      63 </span>                :            : {
+<span class="lineNum">      64 </span>                :            : public:
+<span class="lineNum">      65 </span>                :            :     virtual void exitCurrentTest() const=0;
+<span class="lineNum">      66 </span>                :            :     virtual ~TestTerminator();
+<span class="lineNum">      67 </span>                :            : };
+<span class="lineNum">      68 </span>                :            : 
+<span class="lineNum">      69 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 : class NormalTestTerminator : public TestTerminator</span>
+<span class="lineNum">      70 </span>                :            : {
+<span class="lineNum">      71 </span>                :            : public:
+<span class="lineNum">      72 </span>                :            :     virtual void exitCurrentTest() const _override;
+<span class="lineNum">      73 </span>                :            :     virtual ~NormalTestTerminator();
+<span class="lineNum">      74 </span>                :            : };
+<span class="lineNum">      75 </span>                :            : 
+<span class="lineNum">      76 </span>                :            : class TestTerminatorWithoutExceptions  : public TestTerminator
+<span class="lineNum">      77 </span>                :            : {
+<span class="lineNum">      78 </span>                :            : public:
+<span class="lineNum">      79 </span>                :            :     virtual void exitCurrentTest() const _override;
+<span class="lineNum">      80 </span>                :            :     virtual ~TestTerminatorWithoutExceptions();
+<span class="lineNum">      81 </span>                :            : };
+<span class="lineNum">      82 </span>                :            : 
+<span class="lineNum">      83 </span>                :            : //////////////////// UtestShell
+<span class="lineNum">      84 </span>                :            : 
+<span class="lineNum">      85 </span>                :            : class UtestShell
+<span class="lineNum">      86 </span>                :            : {
+<span class="lineNum">      87 </span>                :            : public:
+<span class="lineNum">      88 </span>                :            :     static UtestShell *getCurrent();
+<span class="lineNum">      89 </span>                :            : 
+<span class="lineNum">      90 </span>                :            : public:
+<span class="lineNum">      91 </span>                :            :     UtestShell(const char* groupName, const char* testName, const char* fileName, int lineNumber);
+<span class="lineNum">      92 </span>                :            :     virtual ~UtestShell();
+<span class="lineNum">      93 </span>                :            : 
+<span class="lineNum">      94 </span>                :            :     virtual UtestShell* addTest(UtestShell* test);
+<span class="lineNum">      95 </span>                :            :     virtual UtestShell *getNext() const;
+<span class="lineNum">      96 </span>                :            :     virtual int countTests();
+<span class="lineNum">      97 </span>                :            : 
+<span class="lineNum">      98 </span>                :            :     bool shouldRun(const TestFilter* groupFilters, const TestFilter* nameFilters) const;
+<span class="lineNum">      99 </span>                :            :     const SimpleString getName() const;
+<span class="lineNum">     100 </span>                :            :     const SimpleString getGroup() const;
+<span class="lineNum">     101 </span>                :            :     virtual SimpleString getFormattedName() const;
+<span class="lineNum">     102 </span>                :            :     const SimpleString getFile() const;
+<span class="lineNum">     103 </span>                :            :     int getLineNumber() const;
+<span class="lineNum">     104 </span>                :            :     virtual bool willRun() const;
+<span class="lineNum">     105 </span>                :            :     virtual bool hasFailed() const;
+<span class="lineNum">     106 </span>                :            :     void countCheck();
+<span class="lineNum">     107 </span>                :            : 
+<span class="lineNum">     108 </span>                :            :     virtual void assertTrue(bool condition, const char *checkString, const char *conditionString, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     109 </span>                :            :     virtual void assertCstrEqual(const char *expected, const char *actual, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     110 </span>                :            :     virtual void assertCstrNEqual(const char *expected, const char *actual, size_t length, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     111 </span>                :            :     virtual void assertCstrNoCaseEqual(const char *expected, const char *actual, const char* text, const char *fileName, int lineNumber);
+<span class="lineNum">     112 </span>                :            :     virtual void assertCstrContains(const char *expected, const char *actual, const char* text, const char *fileName, int lineNumber);
+<span class="lineNum">     113 </span>                :            :     virtual void assertCstrNoCaseContains(const char *expected, const char *actual, const char* text, const char *fileName, int lineNumber);
+<span class="lineNum">     114 </span>                :            :     virtual void assertLongsEqual(long expected, long actual, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     115 </span>                :            :     virtual void assertUnsignedLongsEqual(unsigned long expected, unsigned long actual, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     116 </span>                :            :     virtual void assertLongLongsEqual(cpputest_longlong expected, cpputest_longlong actual, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     117 </span>                :            :     virtual void assertUnsignedLongLongsEqual(cpputest_ulonglong expected, cpputest_ulonglong actual, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     118 </span>                :            :     virtual void assertSignedBytesEqual(signed char expected, signed char actual, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     119 </span>                :            :     virtual void assertPointersEqual(const void *expected, const void *actual, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     120 </span>                :            :     virtual void assertFunctionPointersEqual(void (*expected)(), void (*actual)(), const char* text, const char* fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     121 </span>                :            :     virtual void assertDoublesEqual(double expected, double actual, double threshold, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     122 </span>                :            :     virtual void assertEquals(bool failed, const char* expected, const char* actual, const char* text, const char* file, int line, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     123 </span>                :            :     virtual void assertBinaryEqual(const void *expected, const void *actual, size_t length, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     124 </span>                :            :     virtual void assertBitsEqual(unsigned long expected, unsigned long actual, unsigned long mask, size_t byteCount, const char* text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     125 </span>                :            :     virtual void fail(const char *text, const char *fileName, int lineNumber, const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     126 </span>                :            :     virtual void exitTest(const TestTerminator&amp; testTerminator = NormalTestTerminator());
+<span class="lineNum">     127 </span>                :            : 
+<span class="lineNum">     128 </span>                :            :     virtual void print(const char *text, const char *fileName, int lineNumber);
+<span class="lineNum">     129 </span>                :            :     virtual void print(const SimpleString &amp; text, const char *fileName, int lineNumber);
+<span class="lineNum">     130 </span>                :            : 
+<span class="lineNum">     131 </span>                :            :     void setFileName(const char *fileName);
+<span class="lineNum">     132 </span>                :            :     void setLineNumber(int lineNumber);
+<span class="lineNum">     133 </span>                :            :     void setGroupName(const char *groupName);
+<span class="lineNum">     134 </span>                :            :     void setTestName(const char *testName);
+<span class="lineNum">     135 </span>                :            : 
+<span class="lineNum">     136 </span>                :            :     static void crash();
+<span class="lineNum">     137 </span>                :            :     static void setCrashMethod(void (*crashme)());
+<span class="lineNum">     138 </span>                :            :     static void resetCrashMethod();
+<span class="lineNum">     139 </span>                :            : 
+<span class="lineNum">     140 </span>                :            :     virtual bool isRunInSeperateProcess() const;
+<span class="lineNum">     141 </span>                :            :     virtual void setRunInSeperateProcess();
+<span class="lineNum">     142 </span>                :            : 
+<span class="lineNum">     143 </span>                :            :     virtual void setRunIgnored();
+<span class="lineNum">     144 </span>                :            : 
+<span class="lineNum">     145 </span>                :            :     virtual Utest* createTest();
+<span class="lineNum">     146 </span>                :            :     virtual void destroyTest(Utest* test);
+<span class="lineNum">     147 </span>                :            : 
+<span class="lineNum">     148 </span>                :            :     virtual void runOneTest(TestPlugin* plugin, TestResult&amp; result);
+<span class="lineNum">     149 </span>                :            :     virtual void runOneTestInCurrentProcess(TestPlugin *plugin, TestResult &amp; result);
+<span class="lineNum">     150 </span>                :            : 
+<span class="lineNum">     151 </span>                :            :     virtual void failWith(const TestFailure&amp; failure);
+<span class="lineNum">     152 </span>                :            :     virtual void failWith(const TestFailure&amp; failure, const TestTerminator&amp; terminator);
+<span class="lineNum">     153 </span>                :            : 
+<span class="lineNum">     154 </span>                :            : protected:
+<span class="lineNum">     155 </span>                :            :     UtestShell();
+<span class="lineNum">     156 </span>                :            :     UtestShell(const char *groupName, const char *testName, const char *fileName, int lineNumber, UtestShell *nextTest);
+<span class="lineNum">     157 </span>                :            : 
+<span class="lineNum">     158 </span>                :            :     virtual SimpleString getMacroName() const;
+<span class="lineNum">     159 </span>                :            :     TestResult *getTestResult();
+<span class="lineNum">     160 </span>                :            : private:
+<span class="lineNum">     161 </span>                :            :     const char *group_;
+<span class="lineNum">     162 </span>                :            :     const char *name_;
+<span class="lineNum">     163 </span>                :            :     const char *file_;
+<span class="lineNum">     164 </span>                :            :     int lineNumber_;
+<span class="lineNum">     165 </span>                :            :     UtestShell *next_;
+<span class="lineNum">     166 </span>                :            :     bool isRunAsSeperateProcess_;
+<span class="lineNum">     167 </span>                :            :     bool hasFailed_;
+<span class="lineNum">     168 </span>                :            : 
+<span class="lineNum">     169 </span>                :            :     void setTestResult(TestResult* result);
+<span class="lineNum">     170 </span>                :            :     void setCurrentTest(UtestShell* test);
+<span class="lineNum">     171 </span>                :            :     bool match(const char* target, const TestFilter* filters) const;
+<span class="lineNum">     172 </span>                :            : 
+<span class="lineNum">     173 </span>                :            :     static UtestShell* currentTest_;
+<span class="lineNum">     174 </span>                :            :     static TestResult* testResult_;
+<span class="lineNum">     175 </span>                :            : 
+<span class="lineNum">     176 </span>                :            : };
+<span class="lineNum">     177 </span>                :            : 
+<span class="lineNum">     178 </span>                :            : 
+<span class="lineNum">     179 </span>                :            : 
+<span class="lineNum">     180 </span>                :            : //////////////////// ExecFunctionTest
+<span class="lineNum">     181 </span>                :            : 
+<span class="lineNum">     182 </span>                :            : class ExecFunctionTestShell;
+<span class="lineNum">     183 </span>                :            : 
+<span class="lineNum">     184 </span>                :            : class ExecFunctionTest : public Utest
+<span class="lineNum">     185 </span>                :            : {
+<span class="lineNum">     186 </span>                :            : public:
+<span class="lineNum">     187 </span>                :            :     ExecFunctionTest(ExecFunctionTestShell* shell);
+<span class="lineNum">     188 </span>                :            :     void testBody() _override;
+<span class="lineNum">     189 </span>                :            :     virtual void setup() _override;
+<span class="lineNum">     190 </span>                :            :     virtual void teardown() _override;
+<span class="lineNum">     191 </span>                :            : private:
+<span class="lineNum">     192 </span>                :            :     ExecFunctionTestShell* shell_;
+<span class="lineNum">     193 </span>                :            : };
+<span class="lineNum">     194 </span>                :            : 
+<span class="lineNum">     195 </span>                :            : //////////////////// ExecFunctionTestShell
+<span class="lineNum">     196 </span>                :            : 
+<span class="lineNum">     197 </span>                :            : class ExecFunctionTestShell: public UtestShell
+<span class="lineNum">     198 </span>                :            : {
+<span class="lineNum">     199 </span>                :            : public:
+<span class="lineNum">     200 </span>                :            :     void (*setup_)();
+<span class="lineNum">     201 </span>                :            :     void (*teardown_)();
+<span class="lineNum">     202 </span>                :            :     void (*testFunction_)();
+<span class="lineNum">     203 </span>                :            : 
+<span class="lineNum">     204 </span>                :            :     ExecFunctionTestShell(void(*set)() = 0, void(*tear)() = 0) :
+<span class="lineNum">     205 </span>                :            :         UtestShell(&quot;Generic&quot;, &quot;Generic&quot;, &quot;Generic&quot;, 1), setup_(set), teardown_(
+<span class="lineNum">     206 </span>                :            :                 tear), testFunction_(0)
+<span class="lineNum">     207 </span>                :            :     {
+<span class="lineNum">     208 </span>                :            :     }
+<span class="lineNum">     209 </span>                :            :     Utest* createTest() { return new ExecFunctionTest(this); }
+<span class="lineNum">     210 </span>                :            :     virtual ~ExecFunctionTestShell();
+<span class="lineNum">     211 </span>                :            : };
+<span class="lineNum">     212 </span>                :            : 
+<span class="lineNum">     213 </span>                :            : //////////////////// CppUTestFailedException
+<span class="lineNum">     214 </span>                :            : 
+<span class="lineNum">     215 </span>                :            : class CppUTestFailedException
+<span class="lineNum">     216 </span>                :            : {
+<span class="lineNum">     217 </span>                :            : public:
+<span class="lineNum">     218 </span>                :            :     int dummy_;
+<span class="lineNum">     219 </span>                :            : };
+<span class="lineNum">     220 </span>                :            : 
+<span class="lineNum">     221 </span>                :            : //////////////////// IgnoredTest
+<span class="lineNum">     222 </span>                :            : 
+<span class="lineNum">     223 </span>                :            : class IgnoredUtestShell : public UtestShell
+<span class="lineNum">     224 </span>                :            : {
+<span class="lineNum">     225 </span>                :            : public:
+<span class="lineNum">     226 </span>                :            :     IgnoredUtestShell();
+<span class="lineNum">     227 </span>                :            :     virtual ~IgnoredUtestShell();
+<span class="lineNum">     228 </span>                :            :     explicit IgnoredUtestShell(const char* groupName, const char* testName,
+<span class="lineNum">     229 </span>                :            :             const char* fileName, int lineNumber);
+<span class="lineNum">     230 </span>                :            :     virtual bool willRun() const _override;
+<span class="lineNum">     231 </span>                :            :     virtual void setRunIgnored() _override;
+<span class="lineNum">     232 </span>                :            : protected:
+<span class="lineNum">     233 </span>                :            :     virtual SimpleString getMacroName() const _override;
+<span class="lineNum">     234 </span>                :            :     virtual void runOneTest(TestPlugin* plugin, TestResult&amp; result) _override;
+<span class="lineNum">     235 </span>                :            : private:
+<span class="lineNum">     236 </span>                :            : 
+<span class="lineNum">     237 </span>                :            :     IgnoredUtestShell(const IgnoredUtestShell&amp;);
+<span class="lineNum">     238 </span>                :            :     IgnoredUtestShell&amp; operator=(const IgnoredUtestShell&amp;);
+<span class="lineNum">     239 </span>                :            : 
+<span class="lineNum">     240 </span>                :            :     bool runIgnored_;
+<span class="lineNum">     241 </span>                :            : 
+<span class="lineNum">     242 </span>                :            : };
+<span class="lineNum">     243 </span>                :            : 
+<span class="lineNum">     244 </span>                :            : //////////////////// TestInstaller
+<span class="lineNum">     245 </span>                :            : 
+<span class="lineNum">     246 </span>                :            : class TestInstaller
+<span class="lineNum">     247 </span>                :            : {
+<span class="lineNum">     248 </span>                :            : public:
+<span class="lineNum">     249 </span>                :            :     explicit TestInstaller(UtestShell&amp; shell, const char* groupName, const char* testName,
+<span class="lineNum">     250 </span>                :            :             const char* fileName, int lineNumber);
+<span class="lineNum">     251 </span>                :            :     virtual ~TestInstaller();
+<span class="lineNum">     252 </span>                :            : 
+<span class="lineNum">     253 </span>                :            :     void unDo();
+<span class="lineNum">     254 </span>                :            : 
+<span class="lineNum">     255 </span>                :            : private:
+<span class="lineNum">     256 </span>                :            : 
+<span class="lineNum">     257 </span>                :            :     TestInstaller(const TestInstaller&amp;);
+<span class="lineNum">     258 </span>                :            :     TestInstaller&amp; operator=(const TestInstaller&amp;);
+<span class="lineNum">     259 </span>                :            : 
+<span class="lineNum">     260 </span>                :            : };
+<span class="lineNum">     261 </span>                :            : 
+<span class="lineNum">     262 </span>                :            : #endif
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.13</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
