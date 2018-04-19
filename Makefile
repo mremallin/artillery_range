@@ -2,12 +2,13 @@ IDIR =.
 CC=gcc
 CFLAGS=-g -I$(IDIR) -I/usr/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE
 TEST_CFLAGS=-fprofile-arcs -ftest-coverage
+PROD_CFLAGS=-O2
 
 ODIR=obj
 TEST_ODIR=$(ODIR)_test
 
 LIBS=-L/opt/local/lib -L/usr/lib/x86_64-linux-gnu -lSDL2
-TEST_LIBS=-lCppUTest -lCppUTestExt
+TEST_RUNNER_LIBS=-lCppUTest -lCppUTestExt
 
 _DEPS = main.h display.h charset.h object.h text.h llist.h sm.h sm_defs.h game.sm intro.h menu.h utils.h sprite.h game.h line.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
@@ -25,6 +26,7 @@ PROGNAME=artillery_range
 TESTNAME=$(PROGNAME)_test
 
 # Main program rules
+$(PROGNAME): $(eval CFLAGS += $(PROD_CFLAGS))
 $(PROGNAME): $(OBJ)
 	gcc -o $@ $^ $(CFLAGS) $(LIBS)
 
@@ -40,7 +42,7 @@ test: $(TESTNAME)
 	./$(TESTNAME)
 
 $(TESTNAME): $(TEST_OBJ) $(UT_OBJ)
-	g++ -o $@ $^ $(CFLAGS) $(TEST_LIBS)
+	g++ -o $@ $^ $(CFLAGS) $(TEST_RUNNER_LIBS)
 
 $(TEST_ODIR):
 	mkdir $(TEST_ODIR)
@@ -61,7 +63,7 @@ lcov: test
 
 
 
-.PHONY: clean doxygen lcov
+.PHONY: clean doxygen
 
 clean:
 	-@rm -f $(ODIR)/*.o $(TEST_ODIR).*.o *~ $(PROGNAME) $(INCDIR)/*~ $(TESTNAME) || true
