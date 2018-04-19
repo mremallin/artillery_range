@@ -3,7 +3,7 @@ extern "C" {
 #include "llist.h"
 }
 
-TEST_GROUP(llist_test_group)
+TEST_GROUP(llist)
 {
     llist_head_st llist_test_head;
 
@@ -23,7 +23,7 @@ TEST_GROUP(llist_test_group)
     }
 };
 
-TEST(llist_test_group, InitHead)
+TEST(llist, InitHead)
 {
     llist_test_head.list_head = (struct llist_elem_st_ *)0xdeadbeef;
     llist_test_head.list_count = 10;
@@ -33,7 +33,7 @@ TEST(llist_test_group, InitHead)
     POINTERS_EQUAL(llist_test_head.list_head, NULL);
 }
 
-TEST(llist_test_group, AddOneElem)
+TEST(llist, AddOneElem)
 {
     llist_elem_st elem;
 
@@ -50,7 +50,7 @@ TEST(llist_test_group, AddOneElem)
     LONGS_EQUAL(llist_test_head.list_count, 0);
 }
 
-TEST(llist_test_group, AddTwoRemoveLast)
+TEST(llist, AddTwoRemoveLast)
 {
     llist_elem_st elem[2];
 
@@ -74,7 +74,7 @@ TEST(llist_test_group, AddTwoRemoveLast)
     llist_unlink(&llist_test_head, &elem[0]);
 }
 
-TEST(llist_test_group, AddTwoRemoveFirst)
+TEST(llist, AddTwoRemoveFirst)
 {
     llist_elem_st elem[2];
 
@@ -88,7 +88,7 @@ TEST(llist_test_group, AddTwoRemoveFirst)
     llist_unlink(&llist_test_head, &elem[1]);
 }
 
-TEST(llist_test_group, AddThreeRemoveMiddle)
+TEST(llist, AddThreeRemoveMiddle)
 {
     llist_elem_st elem[3];
     int i;
@@ -134,7 +134,7 @@ llist_test_destroy_walk(llist_elem_st *curr_elem, void *ctx)
     POINTERS_EQUAL(curr_elem->next, NULL);
 }
 
-TEST(llist_test_group, FiveElemWalk)
+TEST(llist, FiveElemWalk)
 {
     llist_elem_st elems[5];
     int i = 0;
