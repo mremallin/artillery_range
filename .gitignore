@@ -1,7 +1,7 @@
 *.swp
 *.o
 *.out
-./artillery_range
+bin
 artillery_range_test
 .DS_Store
 doxygen*

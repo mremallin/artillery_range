@@ -4,6 +4,8 @@ CFLAGS=-g -I$(IDIR) -I/usr/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=
 TEST_CFLAGS=-fprofile-arcs -ftest-coverage
 PROD_CFLAGS=-O2
 
+BIN_DIR=bin
+
 ODIR=obj
 TEST_ODIR=$(ODIR)_test
 
@@ -28,10 +30,14 @@ TESTNAME=$(PROGNAME)_test
 # Main program rules
 $(PROGNAME): $(eval CFLAGS += $(PROD_CFLAGS))
 $(PROGNAME): $(OBJ)
-	gcc -o $@ $^ $(CFLAGS) $(LIBS)
+	gcc -o $(BIN_DIR)/$@ $^ $(CFLAGS) $(LIBS)
 
-$(ODIR):
-	mkdir $(ODIR)
+# Is there a better way to create the output bin dir automatically?
+$(ODIR): $(BIN_DIR)
+	@-mkdir $(ODIR)
+
+$(BIN_DIR):
+	@-mkdir $(BIN_DIR)
 
 $(ODIR)/%.o: %.c $(DEPS) $(ODIR)
 	$(CC) -c -o $@ $< $(CFLAGS)
@@ -39,10 +45,10 @@ $(ODIR)/%.o: %.c $(DEPS) $(ODIR)
 # Unit testing rules
 test: $(eval CFLAGS += $(TEST_CFLAGS))
 test: $(TESTNAME)
-	./$(TESTNAME)
+	bin/$(TESTNAME)
 
 $(TESTNAME): $(TEST_OBJ) $(UT_OBJ)
-	g++ -o $@ $^ $(CFLAGS) $(TEST_RUNNER_LIBS)
+	g++ -o $(BIN_DIR)/$@ $^ $(CFLAGS) $(TEST_RUNNER_LIBS)
 
 $(TEST_ODIR):
 	mkdir $(TEST_ODIR)
@@ -66,7 +72,7 @@ lcov: test
 .PHONY: clean doxygen
 
 clean:
-	-@rm -r $(ODIR) $(TEST_ODIR) $(PROGNAME) $(TESTNAME) || true
+	-@rm -r $(ODIR) $(TEST_ODIR) $(PROGNAME) $(TESTNAME) $(BIN_DIR) || true
 	-@rm -r doxygen || true
 	-@rm -r lcov || true
 	-@rm -r $(PROGNAME) || true
