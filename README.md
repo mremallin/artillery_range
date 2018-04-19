@@ -9,3 +9,5 @@
 
 # How to generate code coverage
 > make lcov
+
+[GitHub Page](https://mremallin.github.io/artillery_range)
