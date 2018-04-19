@@ -11,10 +11,8 @@ static void
 text_update_position (object_base_st    *base,
                       uint32_t           frame_tick_ms)
 {
-    text_obj_st *text;
     assert(base->obj_type == OBJECT_TYPE_TEXT);
 
-    text = (text_obj_st *)base;
     if (!OBJECT_TEST_FLAG(base, TEXT_OPTION_SCROLLING)) {
         return;
     }

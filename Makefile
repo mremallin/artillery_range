@@ -1,6 +1,6 @@
 IDIR =.
 CC=gcc
-CFLAGS=-g -I$(IDIR) -I/usr/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE
+CFLAGS=-g -I$(IDIR) -I/usr/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE -Wall -Wno-missing-braces
 TEST_CFLAGS=-fprofile-arcs -ftest-coverage
 PROD_CFLAGS=-O2
 
@@ -66,7 +66,7 @@ lcov: test
 .PHONY: clean doxygen
 
 clean:
-	-@rm -f $(ODIR)/*.o $(TEST_ODIR).*.o *~ $(PROGNAME) $(INCDIR)/*~ $(TESTNAME) || true
+	-@rm -r $(ODIR) $(TEST_ODIR) $(PROGNAME) $(TESTNAME) || true
 	-@rm -r doxygen || true
 	-@rm -r lcov || true
 	-@rm -r $(PROGNAME) || true

@@ -485,7 +485,7 @@ static uint8_t charset[128][CHAR_HEIGHT] =
 uint8_t *
 charset_get_char_bitmap (char c)
 {
-    return charset[c];
+    return charset[(unsigned char)c];
 }
 
 size_t

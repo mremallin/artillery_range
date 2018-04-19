@@ -31,8 +31,8 @@
 #define SM_START(_sm_name)                                                  \
     static sm_state_##_sm_name##_st sm_transition_table_##_sm_name          \
         [sm_##_sm_name##_state_max] = {                                     \
-    [sm_##_sm_name##_state_min] = { NULL, sm_##_sm_name##_state_min         \
-    },
+    [sm_##_sm_name##_state_min] = {{ NULL, sm_##_sm_name##_state_min        \
+    }},
 
 #define SM_STATE_START(_sm_name, _sm_state)                                 \
     [sm_##_sm_name##_state_##_sm_state] = {                                 \
@@ -40,7 +40,7 @@
 
 #define SM_STATE_EVENT(_sm_name, _sm_evt, _sm_cb, _sm_next_state)           \
             [sm_##_sm_name##_event_##_sm_evt] = {                           \
-                .transition_cb = _sm_cb,                                  \
+                .transition_cb = _sm_cb,                                    \
                 .next_state = sm_##_sm_name##_state_##_sm_next_state,       \
             },
 
