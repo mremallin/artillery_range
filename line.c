@@ -23,6 +23,38 @@ line_update_position (object_base_st *base,
 }
 
 static void
+line_draw_bresenham (struct line_obj_st_ *line)
+{
+    uint32_t *display_buffer = display_get_buffer();
+    uint32_t dx = line->x2 - line->base.x;
+    uint32_t dy = line->y2 - line->base.y;
+    uint32_t x, y;
+    uint32_t eps = 0;
+
+    if (line->x2 - line->base.x >= line->y2 - line->base.y) {
+        y = line->base.y;
+        for (x = line->base.x; x <= line->x2; x++) {
+            display_buffer[x + (y * SCREEN_WIDTH)] = line->line_colour;
+            eps += dy;
+            if ((eps << 1) >= dx) {
+                y++;
+                eps -= dx;
+            }
+        }
+    } else {
+        x = line->base.x;
+        for (y = line->base.y; y <= line->y2; y++) {
+            display_buffer[x + (y * SCREEN_WIDTH)] = line->line_colour;
+            eps += dx;
+            if ((eps << 1) >= dy) {
+                x++;
+                eps -= dy;
+            }
+        }
+    }
+}
+
+static void
 line_draw_vertical (struct line_obj_st_ *line)
 {
     uint32_t *display_buffer = display_get_buffer();
@@ -49,7 +81,6 @@ line_draw_horizontal (struct line_obj_st_ *line)
     for (i = starting_x; i < ending_x; i++) {
         display_buffer[i + (draw_y * SCREEN_WIDTH)] = line->line_colour;
     }
-
 }
 
 static void
@@ -66,7 +97,7 @@ line_draw (object_base_st *base)
         line_draw_horizontal(line);
     } else {
         /* TODO: Support diagonal lines... */
-        assert(false);
+        line_draw_bresenham(line);
     }
 }
 

@@ -30,9 +30,16 @@ game_start (void)
     game_install_api();
     text_create(0, 0, "Game goes here",
             TEXT_OPTION_CENTRED_X);
-    line = line_create(20, 20, 20, 40, COLOUR_WHITE);
+
+    line = line_create(200, 200, 200, 400, COLOUR_WHITE);
     object_add_to_list(line, OBJECT_LIST_BACKGROUND);
-    line = line_create(20, 20, 40, 20, COLOUR_WHITE);
+    line = line_create(200, 200, 400, 200, COLOUR_WHITE);
+    object_add_to_list(line, OBJECT_LIST_BACKGROUND);
+    line = line_create(200, 200, 400, 400, COLOUR_GREEN);
+    object_add_to_list(line, OBJECT_LIST_BACKGROUND);
+    line = line_create(200, 200, 300, 400, COLOUR_RED);
+    object_add_to_list(line, OBJECT_LIST_BACKGROUND);
+    line = line_create(200, 200, 400, 300, COLOUR_YELLOW);
     object_add_to_list(line, OBJECT_LIST_BACKGROUND);
 }
 
