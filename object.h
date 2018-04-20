@@ -4,11 +4,13 @@
 #include <stdint.h>
 
 #include "llist.h"
+#include "colours.h"
 
 typedef enum object_list_et_ {
     OBJECT_LIST_BACKGROUND = 0,
     OBJECT_LIST_MIDGROUND,
     OBJECT_LIST_FOREGROUND,
+    OBJECT_LIST_UI,
     OBJECT_LIST_TEXT,
     OBJECT_LIST_MAX
 } object_list_et;
@@ -17,6 +19,7 @@ typedef enum object_type_et_ {
     OBJECT_TYPE_NONE = 0,
     OBJECT_TYPE_TEXT,
     OBJECT_TYPE_LINE,
+    OBJECT_TYPE_BOX,
     OBJECT_TYPE_SPRITE,
 } object_type_et;
 
@@ -45,6 +48,7 @@ typedef struct object_base_st_ {
     uint32_t y;
     uint32_t width;
     uint32_t height;
+    argb_colour colour;
     uint32_t flags;
 } object_base_st;
 
