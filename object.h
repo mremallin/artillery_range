@@ -41,8 +41,10 @@ typedef struct object_base_st_ {
     llist_elem_st elem;
     object_type_et obj_type;
     obj_api_st *obj_api;
-    float x;
-    float y;
+    uint32_t x;
+    uint32_t y;
+    uint32_t width;
+    uint32_t height;
     uint32_t flags;
 } object_base_st;
 

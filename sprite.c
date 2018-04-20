@@ -35,15 +35,15 @@ sprite_draw (object_base_st *base)
 
     sprite = (sprite_obj_st *)base;
     /* Only 8px wide sprite for now. */
-    assert(sprite->sprite_width == 8);
+    assert(sprite->base.width == 8);
     sprite_data = sprite->sprite_data;
     sprite_x = sprite->base.x;
     sprite_y = sprite->base.y;
 
     /* TODO: Alpha blending? */
-    for (sprite_draw_y = 0; sprite_draw_y < sprite->sprite_height;
+    for (sprite_draw_y = 0; sprite_draw_y < sprite->base.height;
          sprite_draw_y++) {
-        for (sprite_draw_x = 0; sprite_draw_x < sprite->sprite_width;
+        for (sprite_draw_x = 0; sprite_draw_x < sprite->base.width;
              sprite_draw_x++) {
             if (sprite_data[sprite_draw_y] & (1 << (7 - sprite_draw_x))) {
                 display_buffer[(sprite_x + sprite_draw_x) +
@@ -81,13 +81,13 @@ sprite_create (uint32_t x,
     assert(sprite_obj);
     sprite_obj->base.x = x;
     sprite_obj->base.y = y;
+    sprite_obj->base.width = sprite_width;
+    sprite_obj->base.height = sprite_height;
     sprite_obj->base.obj_type = OBJECT_TYPE_SPRITE;
     sprite_obj->base.obj_api = &s_sprite_api;
     sprite_obj->base.flags = flags;
 
     sprite_obj->sprite_data = sprite_data;
-    sprite_obj->sprite_width = sprite_width;
-    sprite_obj->sprite_height = sprite_height;
     sprite_obj->colour = colour;
     sprite_obj->custom_pos_upd = custom_pos_upd;
 

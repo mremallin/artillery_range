@@ -11,8 +11,6 @@ typedef void (*sprite_position_update_func)(struct sprite_obj_st_ *);
 typedef struct sprite_obj_st_ {
     object_base_st  base;
     void            *sprite_data;
-    size_t          sprite_width;
-    size_t          sprite_height;
     uint32_t        colour;
     sprite_position_update_func custom_pos_upd;
 } sprite_obj_st;
