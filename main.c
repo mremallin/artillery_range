@@ -67,6 +67,12 @@ main_sm_game_start (void)
 }
 
 void
+main_sm_game_exit (void)
+{
+    sm_step_state(&sm_game.base, sm_game_event_GAME_EXIT);
+}
+
+void
 main_sm_install_game_mode_api (main_game_mode_api_st *api)
 {
     assert(api);

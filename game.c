@@ -4,12 +4,18 @@
 #include "object.h"
 #include "line.h"
 #include "colours.h"
+#include "menu.h"
 
 #include <SDL.h>
 
 static void
 game_input_handler (SDL_Event *e)
 {
+    if (e->type == SDL_KEYDOWN) {
+        if (e->key.keysym.sym == SDLK_RETURN) {
+            main_sm_game_exit();
+        }
+    }
 }
 
 static main_game_mode_api_st s_game_api = {
@@ -47,4 +53,6 @@ void
 game_exit (void)
 {
     object_clear_list(OBJECT_LIST_TEXT);
+    object_clear_list(OBJECT_LIST_BACKGROUND);
+    main_menu_start();
 }

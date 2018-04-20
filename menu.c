@@ -44,7 +44,7 @@ main_menu_input_handler (SDL_Event *e)
     if (e->type == SDL_KEYDOWN) {
         if (e->key.keysym.sym == SDLK_DOWN) {
             s_current_selection += 1;
-            if (s_current_selection > ARRAY_SIZEOF(s_main_menu_entries)) {
+            if (s_current_selection >= ARRAY_SIZEOF(s_main_menu_entries)) {
                 s_current_selection = 0;
             }
         }
