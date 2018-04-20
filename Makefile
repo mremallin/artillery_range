@@ -9,13 +9,13 @@ BIN_DIR=bin
 ODIR=obj
 TEST_ODIR=$(ODIR)_test
 
-LIBS=-L/opt/local/lib -L/usr/lib/x86_64-linux-gnu -lSDL2
+LIBS=-L/opt/local/lib -L/usr/lib/x86_64-linux-gnu -lSDL2 -lpthread
 TEST_RUNNER_LIBS=-lCppUTest -lCppUTestExt
 
-_DEPS = main.h display.h charset.h object.h text.h llist.h sm.h sm_defs.h game.sm intro.h menu.h utils.h sprite.h game.h line.h game_ui.h box.h
+_DEPS = main.h display.h charset.h object.h text.h llist.h sm.h sm_defs.h game.sm intro.h menu.h utils.h sprite.h game.h line.h game_ui.h box.h game_server.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = main.o display.o charset.o object.o text.o llist.o sm.o intro.o menu.o sprite.o game.o line.o game_ui.o box.o
+_OBJ = main.o display.o charset.o object.o text.o llist.o sm.o intro.o menu.o sprite.o game.o line.o game_ui.o box.o game_server.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 _UT_OBJ = llist.o

@@ -6,6 +6,7 @@
 #include "colours.h"
 #include "menu.h"
 #include "game_ui.h"
+#include "game_server.h"
 
 #include <SDL.h>
 
@@ -52,6 +53,8 @@ game_start (void)
     object_add_to_list(line, OBJECT_LIST_BACKGROUND);
     line = line_create(200, 200, 400, 300, COLOUR_YELLOW);
     object_add_to_list(line, OBJECT_LIST_BACKGROUND);
+
+    game_server_start();
 }
 
 void
