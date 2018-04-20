@@ -15,6 +15,7 @@ game_input_handler (SDL_Event *e)
     game_ui_handle_input(e);
     if (e->type == SDL_KEYDOWN) {
         if (e->key.keysym.sym == SDLK_RETURN) {
+            SDL_Log("Back to main menu");
             main_sm_game_exit();
         }
     }
@@ -56,7 +57,6 @@ game_start (void)
 void
 game_exit (void)
 {
-    object_clear_list(OBJECT_LIST_TEXT);
-    object_clear_list(OBJECT_LIST_BACKGROUND);
+    object_free_all_lists();
     main_menu_start();
 }
