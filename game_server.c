@@ -11,6 +11,13 @@
 static bool s_game_server_running = false;
 static pthread_t s_game_server_thread;
 static int s_game_server_receive_socket_v4;
+static struct sockaddr_in s_server_sockaddr;
+
+struct sockaddr_in*
+game_server_get_running_bind_info()
+{
+    return &s_server_sockaddr;
+}
 
 static void
 game_server_open_socket (void)
@@ -22,8 +29,7 @@ game_server_open_socket (void)
         .sin_addr = INADDR_ANY,
     };
 
-    struct sockaddr_in bound_address;
-    socklen_t bound_address_size = sizeof(bound_address);
+    socklen_t s_server_sockaddr_size = sizeof(s_server_sockaddr);
 
     s_game_server_receive_socket_v4 =
         socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
@@ -50,15 +56,15 @@ game_server_open_socket (void)
     }
 
     rc = getsockname(s_game_server_receive_socket_v4,
-                     (struct sockaddr *)&bound_address,
-                     &bound_address_size);
+                     (struct sockaddr *)&s_server_sockaddr,
+                     &s_server_sockaddr_size);
     if (rc == -1) {
         SDL_Log("Failed to get socket name: %u", errno);
     } else {
         SDL_Log("Socket name: %u %u %u",
-                bound_address.sin_family,
-                bound_address.sin_port,
-                bound_address.sin_addr.s_addr);
+                s_server_sockaddr.sin_family,
+                s_server_sockaddr.sin_port,
+                s_server_sockaddr.sin_addr.s_addr);
     }
 }
 
@@ -69,6 +75,8 @@ game_server_close_socket (void)
     if (rc != 0) {
         SDL_Log("Failed to close socket: %u", errno);
     }
+
+    memset(&s_server_sockaddr, 0, sizeof(s_server_sockaddr));
 }
 
 static void *

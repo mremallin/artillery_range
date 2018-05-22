@@ -7,6 +7,7 @@
 #include "menu.h"
 #include "game_ui.h"
 #include "game_server.h"
+#include "game_client.h"
 
 #include <SDL.h>
 
@@ -35,11 +36,10 @@ game_install_api (void)
 void
 game_start (void)
 {
+    struct sockaddr_in *server_bind_info;
     object_base_st *line;
     object_free_all_lists();
     game_install_api();
-    text_create(0, 0, "Game goes here",
-            TEXT_OPTION_CENTRED_X);
 
     game_ui_create();
 
@@ -55,11 +55,16 @@ game_start (void)
     object_add_to_list(line, OBJECT_LIST_BACKGROUND);
 
     game_server_start();
+    server_bind_info = game_server_get_running_bind_info();
+    while (server_bind_info->sin_port == 0) {}
+    game_client_start(server_bind_info);
 }
 
 void
 game_exit (void)
 {
+    game_client_finish();
+    game_server_finish();
     object_free_all_lists();
     main_menu_start();
 }
