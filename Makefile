@@ -21,7 +21,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 _UT_OBJ = llist.o
 UT_OBJ = $(patsubst %,$(ODIR)/%,$(_UT_OBJ))
 
-_TEST_OBJ = llist_test.o AllTests.o
+_TEST_OBJ = llist_test.o game_client_test.o AllTests.o
 TEST_OBJ = $(patsubst %,$(TEST_ODIR)/%,$(_TEST_OBJ))
 
 PROGNAME=artillery_range
@@ -48,13 +48,13 @@ test: $(TESTNAME)
 	bin/$(TESTNAME)
 
 $(TESTNAME): $(TEST_OBJ) $(UT_OBJ)
-	g++ -o $(BIN_DIR)/$@ $^ $(CFLAGS) $(TEST_RUNNER_LIBS)
+	g++ -std=c++11 -o $(BIN_DIR)/$@ $^ $(CFLAGS) $(TEST_RUNNER_LIBS)
 
 $(TEST_ODIR):
 	mkdir $(TEST_ODIR)
 
 $(TEST_ODIR)/%.o: test/%.cpp $(DEPS) $(TEST_ODIR)
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) -c -std=c++11 -Wno-invalid-noreturn -o $@ $< $(CFLAGS)
 
 # Documentation rules
 doxygen:
