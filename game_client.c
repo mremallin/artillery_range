@@ -83,12 +83,13 @@ game_client_start (struct sockaddr_in *connect_info)
 {
     int rc;
 
-    s_game_client_running = true;
     memcpy(&s_client_sockaddr, connect_info, sizeof(s_client_sockaddr));
 
     rc = pthread_create(&s_game_client_thread, NULL,
                         game_client_thread, NULL);
-    if (rc != 0) {
+    if (rc == 0) {
+        s_game_client_running = true;
+    } else {
         SDL_Log("Failed to create game client thread: %u", rc);
         exit(EXIT_FAILURE);
     }

@@ -20,6 +20,7 @@ TEST_GROUP(game_client_ext_api)
     void
     teardown (void)
     {
+        s_game_client_running = false;
         mock().checkExpectations();
         mock().clear();
     }
@@ -79,6 +80,7 @@ TEST(game_client_ext_api, setup_success)
     CHECK_EQUAL(s_client_sockaddr.sin_family, connect_info.sin_family);
     CHECK_EQUAL(s_client_sockaddr.sin_port, connect_info.sin_port);
     CHECK_EQUAL(s_client_sockaddr.sin_addr.s_addr, connect_info.sin_addr.s_addr);
+    CHECK(s_game_client_running);
 }
 
 TEST(game_client_ext_api, setup_pthread_failure)
@@ -89,7 +91,10 @@ TEST(game_client_ext_api, setup_pthread_failure)
         .withOutputParameterReturning("rc", &rc, sizeof(rc));
     mock().expectOneCall("exit")
         .withParameter("rc", EXIT_FAILURE);
+
     game_client_start(&connect_info);
+
+    CHECK(s_game_client_running == false);
 }
 
 TEST(game_client_ext_api, finish_success)
