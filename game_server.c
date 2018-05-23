@@ -150,10 +150,6 @@ static void
 game_server_network_handle_pending_conns (void)
 {
     int num_ready_fds = 0;
-    struct timespec pselect_timeout = {
-        .tv_sec = 0,
-        .tv_nsec = MSEC_TO_NSEC(5),
-    };
 
     fd_set read_fds;
 
@@ -163,7 +159,7 @@ game_server_network_handle_pending_conns (void)
     num_ready_fds = pselect(s_game_server_receive_socket_v4 + 1, &read_fds,
                             NULL /* Write FDs */,
                             NULL /* Exception FDs */,
-                            &pselect_timeout,
+                            NULL /* Timeout */,
                             NULL /* Signal mask */);
     if (num_ready_fds == -1) {
         SDL_Log("Failed to select when handling pending connections: %u",
@@ -195,10 +191,6 @@ static void
 game_server_network_handle_pending_reads (void)
 {
     int num_ready_fds = 0;
-    struct timespec pselect_timeout = {
-        .tv_sec = 0,
-        .tv_nsec = MSEC_TO_NSEC(1),
-    };
     size_t i;
     int nfds = 0;
 
@@ -217,7 +209,7 @@ game_server_network_handle_pending_reads (void)
                             &read_fds,
                             NULL /* Write FDs */,
                             NULL /* Exception FDs */,
-                            &pselect_timeout,
+                            NULL /* Timeout */,
                             NULL /* Signal mask */);
 
     if (num_ready_fds == -1) {
