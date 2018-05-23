@@ -2,7 +2,7 @@ IDIR =.
 CC=gcc
 CFLAGS=-g -I$(IDIR) -I/usr/local/include/SDL2 -I/usr/include/SDL2 -D_GNU_SOURCE=1 -D_THREAD_SAFE -Wall -Wno-missing-braces
 TEST_CFLAGS=-fprofile-arcs -ftest-coverage
-PROD_CFLAGS=-O2
+PROD_CFLAGS=
 
 BIN_DIR=bin
 
