@@ -109,9 +109,12 @@ extern "C" {
     connect(int socket, const struct sockaddr *address, socklen_t address_len)
     {
         int rc;
+        struct sockaddr_in *sock_addr = (struct sockaddr_in *)address;
         mock().actualCall("connect")
             .withParameter("socket", socket)
             .withOutputParameter("rc", &rc);
+        /* Currently only checking 127.0.0.1 */
+        CHECK_EQUAL(sock_addr->sin_addr.s_addr, 0x0100007f);
         return rc;
     }
 
