@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2018-05-23 23:00:06</td>
+            <td class="headerValue">2018-05-23 23:33:41</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -112,7 +112,7 @@
 <span class="lineNum">      41 </span>                :            :     virtual MockExpectedCall&amp; withName(const SimpleString&amp; name)=0;
 <a name="42"><span class="lineNum">      42 </span>                :            :     virtual MockExpectedCall&amp; withCallOrder(int)=0;</a>
 <span class="lineNum">      43 </span>                :            :     MockExpectedCall&amp; withParameter(const SimpleString&amp; name, bool value) { return withBoolParameter(name, value); }
-<span class="lineNum">      44 </span>                :<span class="lineCov">          1 :     MockExpectedCall&amp; withParameter(const SimpleString&amp; name, int value) { return withIntParameter(name, value); }</span>
+<span class="lineNum">      44 </span>                :<span class="lineCov">         17 :     MockExpectedCall&amp; withParameter(const SimpleString&amp; name, int value) { return withIntParameter(name, value); }</span>
 <span class="lineNum">      45 </span>                :            :     MockExpectedCall&amp; withParameter(const SimpleString&amp; name, unsigned int value) { return withUnsignedIntParameter(name, value); }
 <span class="lineNum">      46 </span>                :            :     MockExpectedCall&amp; withParameter(const SimpleString&amp; name, long int value) { return withLongIntParameter(name, value); }
 <span class="lineNum">      47 </span>                :            :     MockExpectedCall&amp; withParameter(const SimpleString&amp; name, unsigned long int value) { return withUnsignedLongIntParameter(name, value); }

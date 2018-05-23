@@ -38,6 +38,8 @@ game_client_open_socket (void)
     rc = connect(s_game_client_server_socket_v4, connect_address,
                  s_client_sockaddr_size);
     if (rc) {
+        (void)close(s_game_client_server_socket_v4);
+        s_game_client_server_socket_v4 = 0;
         SDL_Log("Failed to connect: %u", errno);
         exit(EXIT_FAILURE);
     }
@@ -53,6 +55,8 @@ game_client_close_socket (void)
     if (rc) {
         SDL_Log("Failed to close socket: %u", errno);
     }
+
+    s_game_client_server_socket_v4 = 0;
 }
 
 static void*
