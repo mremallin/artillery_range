@@ -18,6 +18,7 @@ static bool s_game_client_running = false;
 static pthread_t s_game_client_thread;
 static struct sockaddr_in s_client_sockaddr;
 static int s_game_client_server_socket_v4;
+static bool s_welcome_sent = false;
 
 static void
 game_client_open_socket (void)
@@ -59,22 +60,27 @@ game_client_close_socket (void)
     s_game_client_server_socket_v4 = 0;
 }
 
+static void
+game_client_main_loop (void)
+{
+    int bytes_written = 0;
+
+    if (!s_welcome_sent) {
+        s_welcome_sent = true;
+        bytes_written = write(s_game_client_server_socket_v4,
+                "Test message!\n",
+                sizeof("Test message!\n"));
+        SDL_Log("Wrote %u bytes to socket", bytes_written);
+    }
+}
+
 static void*
 game_client_thread (void *arg)
 {
-    bool printed = false;
-    int bytes_written = 0;
-
     game_client_open_socket();
 
     while (s_game_client_running == true) {
-        if (!printed) {
-            printed = true;
-            bytes_written = write(s_game_client_server_socket_v4,
-                                  "Test message!\n",
-                                  sizeof("Test message!\n"));
-            SDL_Log("Wrote %u bytes to socket", bytes_written);
-        }
+        game_client_main_loop();
     }
 
     game_client_close_socket();
@@ -111,5 +117,6 @@ game_client_finish (void)
         SDL_Log("Failed to join game client thread: %u", rc);
     }
 
+    s_welcome_sent = false;
     memset(&s_client_sockaddr, 0, sizeof(s_client_sockaddr));
 }

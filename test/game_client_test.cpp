@@ -54,6 +54,17 @@ TEST_GROUP(game_client_socket)
     }
 };
 
+TEST_GROUP(game_client_main_loop)
+{
+    void
+    teardown (void)
+    {
+        s_welcome_sent = false;
+        mock().checkExpectations();
+        mock().clear();
+    }
+};
+
 extern "C" {
     void
     SDL_Log(const char *fmt, ...)
@@ -127,6 +138,17 @@ extern "C" {
             .withOutputParameter("rc", &rc);
         return rc;
     }
+
+    ssize_t
+    write (int fildes, const void *buf, size_t nbyte)
+    {
+        ssize_t rc;
+        mock().actualCall("write")
+            .withParameter("fd", fildes)
+            .withOutputParameter("rc", &rc);
+        return rc;
+    }
+
 }
 
 TEST(game_client_ext_api, setup_success)
@@ -270,4 +292,15 @@ TEST(game_client_socket, close_socket_failure)
     game_client_close_socket();
 
     CHECK_EQUAL(s_game_client_server_socket_v4, 0);
+}
+
+TEST(game_client_main_loop, write_once)
+{
+    ssize_t rc = 10;
+    mock().expectOneCall("write")
+        .withParameter("fd", s_game_client_server_socket_v4)
+        .withOutputParameterReturning("rc", &rc, sizeof(rc));
+    game_client_main_loop();
+    game_client_main_loop();
+    game_client_main_loop();
 }
