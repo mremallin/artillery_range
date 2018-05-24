@@ -1,3 +1,5 @@
+#include "game_server.h"
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/time.h>
@@ -139,7 +141,8 @@ game_server_network_open_pending_connection (void)
         exit(EXIT_FAILURE);
     }
 
-    s_game_server_remote_conns = new_remote_conn_arr;
+    s_game_server_remote_conns =
+        (struct gs_remote_connection *)new_remote_conn_arr;
     s_game_server_remote_conns[s_game_server_num_remote_conns-1].gsrc_remote_fd =
         new_connection_fd;
     s_game_server_remote_conns[s_game_server_num_remote_conns-1].gsrc_sockaddr_info =

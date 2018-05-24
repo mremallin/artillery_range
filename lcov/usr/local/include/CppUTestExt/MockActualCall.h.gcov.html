@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2018-05-24 03:13:48</td>
+            <td class="headerValue">2018-05-24 03:27:34</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">2</td>
@@ -121,7 +121,7 @@
 <span class="lineNum">      50 </span>                :            :     MockActualCall&amp; withParameter(const SimpleString&amp; name, unsigned long int value) { return withUnsignedLongIntParameter(name, value); }
 <a name="51"><span class="lineNum">      51 </span>                :            :     MockActualCall&amp; withParameter(const SimpleString&amp; name, double value) { return withDoubleParameter(name, value); }</a>
 <span class="lineNum">      52 </span>                :            :     MockActualCall&amp; withParameter(const SimpleString&amp; name, const char* value) { return withStringParameter(name, value); }
-<span class="lineNum">      53 </span>                :<span class="lineCov">          4 :     MockActualCall&amp; withParameter(const SimpleString&amp; name, void* value) { return withPointerParameter(name, value); }</span>
+<span class="lineNum">      53 </span>                :<span class="lineCov">          5 :     MockActualCall&amp; withParameter(const SimpleString&amp; name, void* value) { return withPointerParameter(name, value); }</span>
 <span class="lineNum">      54 </span>                :            :     MockActualCall&amp; withParameter(const SimpleString&amp; name, void (*value)()) { return withFunctionPointerParameter(name, value); }
 <span class="lineNum">      55 </span>                :            :     MockActualCall&amp; withParameter(const SimpleString&amp; name, const void* value) { return withConstPointerParameter(name, value); }
 <span class="lineNum">      56 </span>                :            :     MockActualCall&amp; withParameter(const SimpleString&amp; name, const unsigned char* value, size_t size) { return withMemoryBufferParameter(name, value, size); }

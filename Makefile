@@ -21,7 +21,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 _UT_OBJ = llist.o
 UT_OBJ = $(patsubst %,$(ODIR)/%,$(_UT_OBJ))
 
-_TEST_OBJ = llist_test.o game_client_test.o AllTests.o
+_TEST_OBJ = llist_test.o game_client_test.o game_server_test.o common_mocks.o AllTests.o
 TEST_OBJ = $(patsubst %,$(TEST_ODIR)/%,$(_TEST_OBJ))
 
 PROGNAME=artillery_range
