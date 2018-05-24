@@ -72,14 +72,13 @@ game_server_open_socket (void)
     rc = getsockname(s_game_server_receive_socket_v4,
                      (struct sockaddr *)&s_server_sockaddr,
                      &s_server_sockaddr_size);
-    if (rc == -1) {
-        SDL_Log("Failed to get socket name: %u", errno);
-    } else {
-        SDL_Log("Socket name: %u %u %u",
-                s_server_sockaddr.sin_family,
-                s_server_sockaddr.sin_port,
-                s_server_sockaddr.sin_addr.s_addr);
-    }
+    /* As per the man pages for getsockname, it really should not be possible
+     * to have a failure here! */
+    assert(rc == 0);
+    SDL_Log("Socket name: %u %u %u",
+            s_server_sockaddr.sin_family,
+            s_server_sockaddr.sin_port,
+            s_server_sockaddr.sin_addr.s_addr);
 }
 
 static void

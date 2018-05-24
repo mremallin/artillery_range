@@ -3,11 +3,11 @@
 #include <stdarg.h>
 #include <exception>
 
+#include "common_defs.h"
+
 extern "C" {
 #include "game_client.c"
 }
-
-#define TEST_FD_NO 10
 
 TEST_GROUP(game_client_ext_api)
 {

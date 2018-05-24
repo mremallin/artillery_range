@@ -92,4 +92,31 @@ extern "C" {
             .withOutputParameter("rc", &rc);
         return rc;
     }
+
+    int
+    bind(int socket, const struct sockaddr *address, socklen_t address_len)
+    {
+        int rc;
+        mock().actualCall("bind")
+            .withParameter("socket", socket)
+            .withOutputParameter("rc", &rc);
+        return rc;
+    }
+
+    int
+    getsockname(int socket, struct sockaddr *address,
+                socklen_t *address_len)
+    {
+        return 0;
+    }
+
+    int
+    listen(int socket, int backlog)
+    {
+        int rc;
+        mock().actualCall("listen")
+            .withParameter("socket", socket)
+            .withOutputParameter("rc", &rc);
+        return rc;
+    }
 }
