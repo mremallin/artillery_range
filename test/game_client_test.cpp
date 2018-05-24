@@ -82,7 +82,7 @@ TEST(game_client_ext_api, setup_success)
 
 TEST(game_client_ext_api, setup_pthread_failure)
 {
-    int rc = 1;
+    int rc = EAGAIN;
     mock().expectOneCall("pthread_create")
         .withParameter("thread", &s_game_client_thread)
         .withOutputParameterReturning("rc", &rc, sizeof(rc));

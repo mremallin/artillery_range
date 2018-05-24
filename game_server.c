@@ -262,11 +262,11 @@ game_server_start (void)
 {
     int rc;
 
-    s_game_server_running = true;
-
     rc = pthread_create(&s_game_server_thread, NULL,
                         game_server_thread, NULL);
-    if (rc != 0) {
+    if (rc == 0) {
+        s_game_server_running = true;
+    } else {
         SDL_Log("Failed to create game server thread: %u", rc);
         exit(EXIT_FAILURE);
     }
