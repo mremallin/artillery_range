@@ -1,0 +1,9 @@
+<map id="game_exit" name="game_exit">
+<area shape="rect" id="node2" href="$game__client_8c.html#ab0276e0d6a5a5c0d8740b5e28fd249b8" title="game_client_finish" alt="" coords="140,5,271,31"/>
+<area shape="rect" id="node3" href="$game__server_8c.html#ad15cebad46127ce7afcf116ac7084218" title="game_server_finish" alt="" coords="137,55,274,80"/>
+<area shape="rect" id="node4" href="$object_8c.html#abe3b617bf2847270db55e58380e39a8d" title="object_free_all_lists" alt="" coords="136,104,275,129"/>
+<area shape="rect" id="node8" href="$menu_8c.html#af475239fcd5812f6f3b219b2177371c3" title="main_menu_start" alt="" coords="143,153,268,179"/>
+<area shape="rect" id="node5" href="$object_8c.html#a369d269b2f394af2e2e30cb6772c3a18" title="object_clear_list" alt="" coords="323,104,440,129"/>
+<area shape="rect" id="node6" href="$llist_8c.html#a7a634f165aa78abb21fcedef49375e0e" title="llist_walk_destroy" alt="" coords="488,104,613,129"/>
+<area shape="rect" id="node7" href="$llist_8c.html#a680634d569ef9799de70d97937c57349" title="llist_unlink" alt="" coords="661,104,744,129"/>
+</map>

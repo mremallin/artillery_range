@@ -1,0 +1,5 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$display_8c.html#af579faf54e985a2cfb31ffcd4895ab9c" title="display_init" alt="" coords="125,5,213,31"/>
+<area shape="rect" id="node3" href="$object_8c.html#a77c55392a95302aa180adb21b835f1af" title="object_system_init" alt="" coords="104,55,235,80"/>
+<area shape="rect" id="node4" href="$sm_8c.html#a62208e7dc1e03b7e3c21305b553a06c5" title="sm_step_state" alt="" coords="115,104,223,129"/>
+</map>

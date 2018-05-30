@@ -1,0 +1,4 @@
+<map id="menu_start_game" name="menu_start_game">
+<area shape="rect" id="node2" href="$main_8c.html#a1e1578436a0cff783af5057924db7eeb" title="main_sm_game_start" alt="" coords="182,5,332,31"/>
+<area shape="rect" id="node3" href="$sm_8c.html#a62208e7dc1e03b7e3c21305b553a06c5" title="sm_step_state" alt="" coords="380,5,488,31"/>
+</map>

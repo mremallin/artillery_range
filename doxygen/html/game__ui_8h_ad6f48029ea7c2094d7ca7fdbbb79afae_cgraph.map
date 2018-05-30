@@ -1,0 +1,5 @@
+<map id="game_ui_create" name="game_ui_create">
+<area shape="rect" id="node2" href="$box_8c.html#a7c23bddac7bd0ca98b1f0ea1bec396dc" title="box_create" alt="" coords="191,5,278,31"/>
+<area shape="rect" id="node3" href="$object_8c.html#a52cb3101b8fa3317cb0faa03ed198beb" title="object_add_to_list" alt="" coords="170,55,299,80"/>
+<area shape="rect" id="node4" href="$llist_8c.html#a34b3d53f3372a71543964c17d71d4c38" title="llist_append" alt="" coords="347,55,440,80"/>
+</map>

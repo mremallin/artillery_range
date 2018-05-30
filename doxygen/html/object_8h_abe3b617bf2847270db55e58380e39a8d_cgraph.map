@@ -1,0 +1,5 @@
+<map id="object_free_all_lists" name="object_free_all_lists">
+<area shape="rect" id="node2" href="$object_8c.html#a369d269b2f394af2e2e30cb6772c3a18" title="object_clear_list" alt="" coords="192,5,309,31"/>
+<area shape="rect" id="node3" href="$llist_8c.html#a7a634f165aa78abb21fcedef49375e0e" title="llist_walk_destroy" alt="" coords="357,5,483,31"/>
+<area shape="rect" id="node4" href="$llist_8c.html#a680634d569ef9799de70d97937c57349" title="llist_unlink" alt="" coords="531,5,613,31"/>
+</map>

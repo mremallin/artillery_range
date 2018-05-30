@@ -1,0 +1,8 @@
+<map id="display.h" name="display.h">
+<area shape="rect" id="node2" href="$box_8c.html" title="box.c" alt="" coords="5,79,59,104"/>
+<area shape="rect" id="node3" href="$display_8c.html" title="display.c" alt="" coords="82,79,155,104"/>
+<area shape="rect" id="node4" href="$line_8c.html" title="line.c" alt="" coords="179,79,231,104"/>
+<area shape="rect" id="node5" href="$main_8c.html" title="main.c" alt="" coords="255,79,316,104"/>
+<area shape="rect" id="node6" href="$sprite_8c.html" title="sprite.c" alt="" coords="340,79,404,104"/>
+<area shape="rect" id="node7" href="$text_8c.html" title="text.c" alt="" coords="428,79,481,104"/>
+</map>

@@ -4,6 +4,5 @@
 bin
 artillery_range_test
 .DS_Store
-doxygen*
 obj
 obj_test

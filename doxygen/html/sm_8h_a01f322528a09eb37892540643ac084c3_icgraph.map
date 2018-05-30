@@ -1,0 +1,7 @@
+<map id="sm_step_state" name="sm_step_state">
+<area shape="rect" id="node2" href="$main_8h.html#a7ce68912fa48be7c3708249c41a9b708" title="main_sm_intro_exit" alt="" coords="168,5,305,31"/>
+<area shape="rect" id="node3" href="$main_8h.html#a1e1578436a0cff783af5057924db7eeb" title="main_sm_game_start" alt="" coords="161,55,311,80"/>
+<area shape="rect" id="node5" href="$main_8h.html#a16c9f3d6666d40fba4d41e34c8db99cd" title="main_sm_game_exit" alt="" coords="164,104,308,129"/>
+<area shape="rect" id="node6" href="$main_8c.html#a0ddf1224851353fc92bfbff6f499fa97" title="main" alt="" coords="211,153,261,179"/>
+<area shape="rect" id="node4" href="$menu_8c.html#a8b2118e025b3871ce365c8bf5d55d55a" title="menu_start_game" alt="" coords="359,55,488,80"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="object_clear_list" name="object_clear_list">
+<area shape="rect" id="node2" href="$intro_8h.html#ac065782f90b742d31fd13d0e1d41d4f3" title="intro_exit" alt="" coords="202,5,277,31"/>
+<area shape="rect" id="node3" href="$object_8h.html#abe3b617bf2847270db55e58380e39a8d" title="object_free_all_lists" alt="" coords="170,55,309,80"/>
+<area shape="rect" id="node4" href="$game_8h.html#a9945488589d2968b726a08787f3c18a8" title="game_start" alt="" coords="357,29,445,55"/>
+<area shape="rect" id="node5" href="$game_8h.html#a2c18e524a15b696931fb3311f0d146e1" title="game_exit" alt="" coords="359,79,442,104"/>
+</map>

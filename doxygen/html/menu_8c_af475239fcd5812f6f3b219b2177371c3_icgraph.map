@@ -1,0 +1,4 @@
+<map id="main_menu_start" name="main_menu_start">
+<area shape="rect" id="node2" href="$game_8h.html#a2c18e524a15b696931fb3311f0d146e1" title="game_exit" alt="" coords="178,5,261,31"/>
+<area shape="rect" id="node3" href="$intro_8h.html#ac065782f90b742d31fd13d0e1d41d4f3" title="intro_exit" alt="" coords="181,55,257,80"/>
+</map>
