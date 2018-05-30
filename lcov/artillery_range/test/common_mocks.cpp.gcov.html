@@ -31,27 +31,27 @@
             <td class="headerValue">artillery_range_test.info</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">49</td>
-            <td class="headerCovTableEntry">60</td>
-            <td class="headerCovTableEntryMed">81.7 %</td>
+            <td class="headerCovTableEntry">57</td>
+            <td class="headerCovTableEntry">72</td>
+            <td class="headerCovTableEntryMed">79.2 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2018-05-30 22:17:50</td>
+            <td class="headerValue">2018-05-30 22:48:01</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">13</td>
-            <td class="headerCovTableEntry">13</td>
-            <td class="headerCovTableEntryHi">100.0 %</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntryHi">92.9 %</td>
           </tr>
           <tr>
             <td></td>
             <td></td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">77</td>
-            <td class="headerCovTableEntry">164</td>
-            <td class="headerCovTableEntryLo">47.0 %</td>
+            <td class="headerCovTableEntry">81</td>
+            <td class="headerCovTableEntry">180</td>
+            <td class="headerCovTableEntryLo">45.0 %</td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -86,151 +86,175 @@
 <span class="lineNum">      15 </span>                :            :     {
 <span class="lineNum">      16 </span>                :            :         va_list args;
 <span class="lineNum">      17 </span>                :            : 
-<span class="lineNum">      18 </span>                :<span class="lineCov">        160 :         va_start(args, fmt);</span>
-<span class="lineNum">      19 </span>                :<span class="lineCov">        160 :         va_end(args);</span>
-<span class="lineNum">      20 </span>                :<span class="lineCov">        160 :     }</span>
+<span class="lineNum">      18 </span>                :<span class="lineCov">         24 :         va_start(args, fmt);</span>
+<span class="lineNum">      19 </span>                :<span class="lineCov">         24 :         va_end(args);</span>
+<span class="lineNum">      20 </span>                :<span class="lineCov">         24 :     }</span>
 <a name="21"><span class="lineNum">      21 </span>                :            : </a>
 <span class="lineNum">      22 </span>                :            :     int
 <span class="lineNum">      23 </span>                :            :     pthread_create(pthread_t *thread, const pthread_attr_t *attr,
 <span class="lineNum">      24 </span>                :            :                    void *(*start_routine)(void *), void *arg)
 <span class="lineNum">      25 </span>                :            :     {
 <span class="lineNum">      26 </span>                :            :         int rc;
-<span class="lineNum">      27 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :         mock().actualCall(&quot;pthread_create&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">      28 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :             .withParameter(&quot;thread&quot;, thread)</span>
-<span class="lineNum">      29 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
-<span class="lineNum">      30 </span>                :<span class="lineCov">          8 :         return rc;</span>
+<span class="lineNum">      27 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :         mock().actualCall(&quot;pthread_create&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">      28 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withParameter(&quot;thread&quot;, thread)</span>
+<span class="lineNum">      29 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">      30 </span>                :<span class="lineCov">          4 :         return rc;</span>
 <span class="lineNum">      31 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="32"><span class="lineNum">      32 </span>                :            : </a>
 <span class="lineNum">      33 </span>                :            :     int
 <span class="lineNum">      34 </span>                :            :     pthread_join(pthread_t thread, void **value_ptr)
 <span class="lineNum">      35 </span>                :            :     {
 <span class="lineNum">      36 </span>                :            :         int rc;
-<span class="lineNum">      37 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :         mock().actualCall(&quot;pthread_join&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">      38 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :             .withParameter(&quot;thread&quot;, thread)</span>
-<span class="lineNum">      39 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
-<span class="lineNum">      40 </span>                :<span class="lineCov">          8 :         return rc;</span>
+<span class="lineNum">      37 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :         mock().actualCall(&quot;pthread_join&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">      38 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withParameter(&quot;thread&quot;, thread)</span>
+<span class="lineNum">      39 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">      40 </span>                :<span class="lineCov">          4 :         return rc;</span>
 <span class="lineNum">      41 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="42"><span class="lineNum">      42 </span>                :            : </a>
 <span class="lineNum">      43 </span>                :            :     void
 <span class="lineNum">      44 </span>                :            :     exit (int rc)
 <span class="lineNum">      45 </span>                :            :     {
-<span class="lineNum">      46 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :         mock().actualCall(&quot;exit&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">      47 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :             .withParameter(&quot;rc&quot;, rc);</span>
-<span class="lineNum">      48 </span>                :<span class="lineCov">         14 :         throw std::exception();</span>
+<span class="lineNum">      46 </span>[<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :         mock().actualCall(&quot;exit&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">      47 </span>[<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :             .withParameter(&quot;rc&quot;, rc);</span>
+<span class="lineNum">      48 </span>                :<span class="lineCov">          7 :         throw std::exception();</span>
 <span class="lineNum">      49 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="50"><span class="lineNum">      50 </span>                :            : </a>
 <span class="lineNum">      51 </span>                :            :     int
 <span class="lineNum">      52 </span>                :            :     socket (int domain, int type, int protocol)
 <span class="lineNum">      53 </span>                :            :     {
 <span class="lineNum">      54 </span>                :            :         int rc;
-<span class="lineNum">      55 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :         mock().actualCall(&quot;socket&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">      56 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :             .withParameter(&quot;domain&quot;, domain)</span>
-<span class="lineNum">      57 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :             .withParameter(&quot;type&quot;, type)</span>
-<span class="lineNum">      58 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :             .withParameter(&quot;protocol&quot;, protocol)</span>
-<span class="lineNum">      59 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
-<span class="lineNum">      60 </span>                :<span class="lineCov">         14 :         return rc;</span>
+<span class="lineNum">      55 </span>[<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :         mock().actualCall(&quot;socket&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">      56 </span>[<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :             .withParameter(&quot;domain&quot;, domain)</span>
+<span class="lineNum">      57 </span>[<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :             .withParameter(&quot;type&quot;, type)</span>
+<span class="lineNum">      58 </span>[<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :             .withParameter(&quot;protocol&quot;, protocol)</span>
+<span class="lineNum">      59 </span>[<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">      60 </span>                :<span class="lineCov">          7 :         return rc;</span>
 <span class="lineNum">      61 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="62"><span class="lineNum">      62 </span>                :            : </a>
 <span class="lineNum">      63 </span>                :            :     int
 <span class="lineNum">      64 </span>                :            :     connect(int socket, const struct sockaddr *address, socklen_t address_len)
 <span class="lineNum">      65 </span>                :            :     {
 <span class="lineNum">      66 </span>                :            :         int rc;
-<span class="lineNum">      67 </span>                :<span class="lineCov">          4 :         struct sockaddr_in *sock_addr = (struct sockaddr_in *)address;</span>
-<span class="lineNum">      68 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :         mock().actualCall(&quot;connect&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">      69 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withParameter(&quot;socket&quot;, socket)</span>
-<span class="lineNum">      70 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">      67 </span>                :<span class="lineCov">          2 :         struct sockaddr_in *sock_addr = (struct sockaddr_in *)address;</span>
+<span class="lineNum">      68 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         mock().actualCall(&quot;connect&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">      69 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :             .withParameter(&quot;socket&quot;, socket)</span>
+<span class="lineNum">      70 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
 <span class="lineNum">      71 </span>                :            :         /* Currently only checking 127.0.0.1 */
-<span class="lineNum">      72 </span>[<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineCov">          4 :         CHECK_EQUAL(sock_addr-&gt;sin_addr.s_addr, 0x0100007f);</span>
+<span class="lineNum">      72 </span>[<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineCov">          2 :         CHECK_EQUAL(sock_addr-&gt;sin_addr.s_addr, 0x0100007f);</span>
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>][<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
-<span class="lineNum">      73 </span>                :<span class="lineCov">          4 :         return rc;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">      73 </span>                :<span class="lineCov">          2 :         return rc;</span>
 <span class="lineNum">      74 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="75"><span class="lineNum">      75 </span>                :            : </a>
 <span class="lineNum">      76 </span>                :            :     int
 <span class="lineNum">      77 </span>                :            :     close (int fd)
 <span class="lineNum">      78 </span>                :            :     {
 <span class="lineNum">      79 </span>                :            :         int rc;
-<span class="lineNum">      80 </span>[<span class="branchCov" title="Branch 0 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         38 :         mock().actualCall(&quot;close&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">      81 </span>[<span class="branchCov" title="Branch 0 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         38 :             .withParameter(&quot;fd&quot;, fd)</span>
-<span class="lineNum">      82 </span>[<span class="branchCov" title="Branch 0 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         38 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
-<span class="lineNum">      83 </span>                :<span class="lineCov">         38 :         return rc;</span>
+<span class="lineNum">      80 </span>[<span class="branchCov" title="Branch 0 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         19 :         mock().actualCall(&quot;close&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">      81 </span>[<span class="branchCov" title="Branch 0 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         19 :             .withParameter(&quot;fd&quot;, fd)</span>
+<span class="lineNum">      82 </span>[<span class="branchCov" title="Branch 0 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         19 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">      83 </span>                :<span class="lineCov">         19 :         return rc;</span>
 <span class="lineNum">      84 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="85"><span class="lineNum">      85 </span>                :            : </a>
 <span class="lineNum">      86 </span>                :            :     ssize_t
 <span class="lineNum">      87 </span>                :            :     write (int fildes, const void *buf, size_t nbyte)
 <span class="lineNum">      88 </span>                :            :     {
 <span class="lineNum">      89 </span>                :            :         ssize_t rc;
-<span class="lineNum">      90 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         mock().actualCall(&quot;write&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">      91 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :             .withParameter(&quot;fd&quot;, fildes)</span>
-<span class="lineNum">      92 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
-<span class="lineNum">      93 </span>                :<span class="lineCov">          2 :         return rc;</span>
+<span class="lineNum">      90 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          1 :         mock().actualCall(&quot;write&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">      91 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          1 :             .withParameter(&quot;fd&quot;, fildes)</span>
+<span class="lineNum">      92 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          1 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">      93 </span>                :<span class="lineCov">          1 :         return rc;</span>
 <span class="lineNum">      94 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="95"><span class="lineNum">      95 </span>                :            : </a>
 <span class="lineNum">      96 </span>                :            :     int
 <span class="lineNum">      97 </span>                :            :     bind(int socket, const struct sockaddr *address, socklen_t address_len)
 <span class="lineNum">      98 </span>                :            :     {
 <span class="lineNum">      99 </span>                :            :         int rc;
-<span class="lineNum">     100 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          6 :         mock().actualCall(&quot;bind&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">     101 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          6 :             .withParameter(&quot;socket&quot;, socket)</span>
-<span class="lineNum">     102 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          6 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
-<span class="lineNum">     103 </span>                :<span class="lineCov">          6 :         return rc;</span>
+<span class="lineNum">     100 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          3 :         mock().actualCall(&quot;bind&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">     101 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          3 :             .withParameter(&quot;socket&quot;, socket)</span>
+<span class="lineNum">     102 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          3 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">     103 </span>                :<span class="lineCov">          3 :         return rc;</span>
 <span class="lineNum">     104 </span>                :<span class="lineNoCov">          0 :     }</span>
 <a name="105"><span class="lineNum">     105 </span>                :            : </a>
 <span class="lineNum">     106 </span>                :            :     int
 <span class="lineNum">     107 </span>                :            :     getsockname(int socket, struct sockaddr *address,
 <span class="lineNum">     108 </span>                :            :                 socklen_t *address_len)
 <span class="lineNum">     109 </span>                :            :     {
-<span class="lineNum">     110 </span>                :<span class="lineCov">          2 :         return 0;</span>
+<span class="lineNum">     110 </span>                :<span class="lineCov">          1 :         return 0;</span>
 <span class="lineNum">     111 </span>                :            :     }
 <a name="112"><span class="lineNum">     112 </span>                :            : </a>
 <span class="lineNum">     113 </span>                :            :     int
 <span class="lineNum">     114 </span>                :            :     listen(int socket, int backlog)
 <span class="lineNum">     115 </span>                :            :     {
 <span class="lineNum">     116 </span>                :            :         int rc;
-<span class="lineNum">     117 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :         mock().actualCall(&quot;listen&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">     118 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withParameter(&quot;socket&quot;, socket)</span>
-<span class="lineNum">     119 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
-<span class="lineNum">     120 </span>                :<span class="lineCov">          4 :         return rc;</span>
+<span class="lineNum">     117 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         mock().actualCall(&quot;listen&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">     118 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :             .withParameter(&quot;socket&quot;, socket)</span>
+<span class="lineNum">     119 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :             .withOutputParameter(&quot;rc&quot;, &amp;rc);</span>
+<span class="lineNum">     120 </span>                :<span class="lineCov">          2 :         return rc;</span>
 <span class="lineNum">     121 </span>                :<span class="lineNoCov">          0 :     }</span>
-<span class="lineNum">     122 </span>                :            : 
-<a name="123"><span class="lineNum">     123 </span>                :            : </a>
-<span class="lineNum">     124 </span>                :            :     int
-<span class="lineNum">     125 </span>                :            :     pselect(int max_fd_count,
-<span class="lineNum">     126 </span>                :            :             fd_set *read_fd_set,
-<span class="lineNum">     127 </span>                :            :             fd_set *write_fd_set,
-<span class="lineNum">     128 </span>                :            :             fd_set *except_fd_set,
-<span class="lineNum">     129 </span>                :            :             const struct timespec *timeout,
-<span class="lineNum">     130 </span>                :            :             const sigset_t * sigmask)
-<span class="lineNum">     131 </span>                :            :     {
-<span class="lineNum">     132 </span>                :            :         int num_ready_fds;
-<span class="lineNum">     133 </span>[<span class="branchCov" title="Branch 0 was taken 48 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 48 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         48 :         mock().actualCall(&quot;pselect&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 48 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">     134 </span>[<span class="branchCov" title="Branch 0 was taken 48 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 48 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         48 :             .withOutputParameter(&quot;num_ready_fds&quot;, &amp;num_ready_fds);</span>
-<span class="lineNum">     135 </span>                :<span class="lineCov">         48 :         return num_ready_fds;</span>
-<span class="lineNum">     136 </span>                :<span class="lineNoCov">          0 :     }</span>
-<a name="137"><span class="lineNum">     137 </span>                :            : </a>
-<span class="lineNum">     138 </span>                :            :     int
-<span class="lineNum">     139 </span>                :            :     accept(int socket_fd,
-<span class="lineNum">     140 </span>                :            :            struct sockaddr *sockinfo,
-<span class="lineNum">     141 </span>                :            :            socklen_t *socklen)
-<span class="lineNum">     142 </span>                :            :     {
-<span class="lineNum">     143 </span>                :            :         int accepted_conn_fd;
-<span class="lineNum">     144 </span>[<span class="branchCov" title="Branch 0 was taken 22 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 22 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         22 :         mock().actualCall(&quot;accept&quot;)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 22 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
-<span class="lineNum">     145 </span>[<span class="branchCov" title="Branch 0 was taken 22 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 22 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         22 :             .withOutputParameter(&quot;accepted_conn_fd&quot;, &amp;accepted_conn_fd);</span>
-<span class="lineNum">     146 </span>                :<span class="lineCov">         22 :         return accepted_conn_fd;</span>
-<span class="lineNum">     147 </span>                :<span class="lineNoCov">          0 :     }</span>
-<span class="lineNum">     148 </span>                :            : }
+<a name="122"><span class="lineNum">     122 </span>                :            : </a>
+<span class="lineNum">     123 </span>                :            :     int
+<span class="lineNum">     124 </span>                :            :     pselect(int max_fd_count,
+<span class="lineNum">     125 </span>                :            :             fd_set *read_fd_set,
+<span class="lineNum">     126 </span>                :            :             fd_set *write_fd_set,
+<span class="lineNum">     127 </span>                :            :             fd_set *except_fd_set,
+<span class="lineNum">     128 </span>                :            :             const struct timespec *timeout,
+<span class="lineNum">     129 </span>                :            :             const sigset_t * sigmask)
+<span class="lineNum">     130 </span>                :            :     {
+<span class="lineNum">     131 </span>                :            :         int num_ready_fds;
+<span class="lineNum">     132 </span>                :            :         int i;
+<span class="lineNum">     133 </span>                :            : 
+<span class="lineNum">     134 </span>[<span class="branchCov" title="Branch 0 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         24 :         mock().actualCall(&quot;pselect&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">     135 </span>[<span class="branchCov" title="Branch 0 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         24 :             .withOutputParameter(&quot;num_ready_fds&quot;, &amp;num_ready_fds);</span>
+<span class="lineNum">     136 </span>                :            : 
+<span class="lineNum">     137 </span>        [<span class="branchCov" title="Branch 0 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         24 :         if (read_fd_set) {</span>
+<span class="lineNum">     138 </span>                :<span class="lineCov">         24 :             FD_ZERO(read_fd_set);</span>
+<span class="lineNum">     139 </span>                :<span class="lineCov">         24 :         }</span>
+<span class="lineNum">     140 </span>                :            : 
+<span class="lineNum">     141 </span>        [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchCov" title="Branch 1 was taken 24 times"> + </span>]:<span class="lineCov">         59 :         for (i = 0; i &lt;= num_ready_fds; i++) {</span>
+<span class="lineNum">     142 </span>        [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         35 :             if (read_fd_set) {</span>
+<span class="lineNum">     143 </span>                :<span class="lineCov">         35 :                 FD_SET(i, read_fd_set);</span>
+<span class="lineNum">     144 </span>                :<span class="lineCov">         35 :             }</span>
+<span class="lineNum">     145 </span>                :<span class="lineCov">         35 :         }</span>
+<span class="lineNum">     146 </span>                :            : 
+<span class="lineNum">     147 </span>                :<span class="lineCov">         24 :         return num_ready_fds;</span>
+<span class="lineNum">     148 </span>                :<span class="lineNoCov">          0 :     }</span>
+<a name="149"><span class="lineNum">     149 </span>                :            : </a>
+<span class="lineNum">     150 </span>                :            :     int
+<span class="lineNum">     151 </span>                :            :     accept(int socket_fd,
+<span class="lineNum">     152 </span>                :            :            struct sockaddr *sockinfo,
+<span class="lineNum">     153 </span>                :            :            socklen_t *socklen)
+<span class="lineNum">     154 </span>                :            :     {
+<span class="lineNum">     155 </span>                :            :         int accepted_conn_fd;
+<span class="lineNum">     156 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         11 :         mock().actualCall(&quot;accept&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]
+<span class="lineNum">     157 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         11 :             .withOutputParameter(&quot;accepted_conn_fd&quot;, &amp;accepted_conn_fd);</span>
+<span class="lineNum">     158 </span>                :<span class="lineCov">         11 :         return accepted_conn_fd;</span>
+<span class="lineNum">     159 </span>                :<span class="lineNoCov">          0 :     }</span>
+<a name="160"><span class="lineNum">     160 </span>                :            : </a>
+<span class="lineNum">     161 </span>                :            :     ssize_t
+<span class="lineNum">     162 </span>                :            :     read(int fd_no,
+<span class="lineNum">     163 </span>                :            :          void *read_buffer,
+<span class="lineNum">     164 </span>                :            :          size_t buffer_len)
+<span class="lineNum">     165 </span>                :            :     {
+<span class="lineNum">     166 </span>                :            :         ssize_t num_bytes_read;
+<span class="lineNum">     167 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :         mock().actualCall(&quot;read&quot;)</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]
+<span class="lineNum">     168 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineNoCov">          0 :             .withOutputParameter(&quot;num_bytes_read&quot;, &amp;num_bytes_read);</span>
+<span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 :         return num_bytes_read;</span>
+<span class="lineNum">     170 </span>                :<span class="lineNoCov">          0 :     }</span>
+<span class="lineNum">     171 </span>                :            : }
 </pre>
       </td>
     </tr>

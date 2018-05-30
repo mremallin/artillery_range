@@ -1,3 +1,9 @@
+/**
+ * game_server.c
+ *
+ * Main Implementation of the game server control logic. Not the game logic.
+ */
+
 #include "game_server.h"
 
 #include <sys/types.h>
@@ -19,9 +25,15 @@ static pthread_t s_game_server_thread;
 static int s_game_server_receive_socket_v4;
 static struct sockaddr_in s_server_sockaddr;
 
+/**
+ * \brief Game server remote connection information
+ *
+ * This structure keeps track of information related to remote connections
+ * with clients connected to this game server.
+ */
 struct gs_remote_connection {
     struct sockaddr_in gsrc_sockaddr_info;
-    int                gsrc_remote_fd;
+    int                gsrc_remote_fd; /** File descriptor to talk with the peer */
 };
 
 static struct gs_remote_connection *s_game_server_remote_conns = NULL;
