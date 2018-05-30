@@ -119,4 +119,30 @@ extern "C" {
             .withOutputParameter("rc", &rc);
         return rc;
     }
+
+
+    int
+    pselect(int max_fd_count,
+            fd_set *read_fd_set,
+            fd_set *write_fd_set,
+            fd_set *except_fd_set,
+            const struct timespec *timeout,
+	    const sigset_t * sigmask)
+    {
+        int num_ready_fds;
+        mock().actualCall("pselect")
+            .withOutputParameter("num_ready_fds", &num_ready_fds);
+        return num_ready_fds;
+    }
+
+    int
+    accept(int socket_fd,
+           struct sockaddr *sockinfo,
+           socklen_t *socklen)
+    {
+        int accepted_conn_fd;
+        mock().actualCall("accept")
+            .withOutputParameter("accepted_conn_fd", &accepted_conn_fd);
+        return accepted_conn_fd;
+    }
 }

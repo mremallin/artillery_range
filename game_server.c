@@ -89,8 +89,10 @@ game_server_network_close_open_connections (void)
         close(s_game_server_remote_conns[i].gsrc_remote_fd);
     }
 
-    free(s_game_server_remote_conns);
-    s_game_server_num_remote_conns = 0;
+    if (s_game_server_num_remote_conns > 0) {
+        free(s_game_server_remote_conns);
+        s_game_server_num_remote_conns = 0;
+    }
 }
 
 static void

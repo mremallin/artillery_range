@@ -27,6 +27,29 @@ TEST_GROUP(game_server_listen_socket)
     }
 };
 
+TEST_GROUP(game_server_network)
+{
+    void
+    teardown (void)
+    {
+        size_t i;
+        int rc = 0;
+
+        for (i = 0; i < s_game_server_num_remote_conns; i++) {
+            mock().expectOneCall("close")
+                .withParameter("fd", s_game_server_remote_conns[i].gsrc_remote_fd)
+                .withOutputParameterReturning("rc", &rc, sizeof(rc));
+        }
+        mock().expectOneCall("close")
+            .withParameter("fd", s_game_server_receive_socket_v4)
+            .withOutputParameterReturning("rc", &rc, sizeof(rc));
+        game_server_close_socket();
+
+        mock().checkExpectations();
+        mock().clear();
+    }
+};
+
 TEST(game_server_ext_api, get_bind_info)
 {
     CHECK_EQUAL(game_server_get_running_bind_info(),
@@ -166,3 +189,50 @@ TEST(game_server_listen_socket, open_socket_listen_failure)
         .withParameter("rc", EXIT_FAILURE);
     CHECK_THROWS(std::exception, game_server_open_socket());
 }
+
+TEST(game_server_network, handle_no_pending_connections)
+{
+    int num_ready_fds = 0;
+
+    mock().expectOneCall("pselect")
+        .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
+                                      sizeof(num_ready_fds));
+    mock().expectOneCall("pselect")
+        .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
+                                      sizeof(num_ready_fds));
+
+    game_server_handle_network();
+}
+
+TEST(game_server_network, handle_one_pending_connection)
+{
+    int is_pending_conn = 1;
+    int accepted_conn_fd = TEST_FD_NO;
+    int num_ready_fds = 0;
+
+    mock().expectOneCall("pselect")
+        .withOutputParameterReturning("num_ready_fds", &is_pending_conn,
+                                      sizeof(is_pending_conn));
+    mock().expectOneCall("accept")
+        .withOutputParameterReturning("accepted_conn_fd", &accepted_conn_fd,
+                                      sizeof(accepted_conn_fd));
+
+    mock().expectOneCall("pselect")
+        .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
+                                      sizeof(num_ready_fds));
+
+    game_server_handle_network();
+    CHECK_EQUAL(s_game_server_num_remote_conns, 1);
+    CHECK_EQUAL(s_game_server_remote_conns[0].gsrc_remote_fd, TEST_FD_NO);
+}
+
+#if 0
+TEST(game_server_network, handle_10_pending_connections)
+{
+    int is_pending_conn = 1;
+    int accepted_conn_fd = TEST_FD_NO;
+    int num_ready_fds = 0;
+    int i;
+
+}
+#endif
