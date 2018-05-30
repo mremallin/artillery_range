@@ -91,6 +91,7 @@ game_server_network_close_open_connections (void)
 
     if (s_game_server_num_remote_conns > 0) {
         free(s_game_server_remote_conns);
+        s_game_server_remote_conns = NULL;
         s_game_server_num_remote_conns = 0;
     }
 }

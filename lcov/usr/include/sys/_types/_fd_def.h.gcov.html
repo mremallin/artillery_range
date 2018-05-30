@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2018-05-30 10:17:48</td>
+            <td class="headerValue">2018-05-30 22:17:50</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -126,7 +126,7 @@
 <span class="lineNum">      55 </span>                :            : static __inline int
 <span class="lineNum">      56 </span>                :            : __darwin_fd_isset(int _n, const struct fd_set *_p)
 <span class="lineNum">      57 </span>                :            : {
-<span class="lineNum">      58 </span>                :<span class="lineCov">          2 :         return (_p-&gt;fds_bits[(unsigned long)_n/__DARWIN_NFDBITS] &amp; ((__int32_t)(((unsigned long)1)&lt;&lt;((unsigned long)_n % __DARWIN_NFDBITS))));</span>
+<span class="lineNum">      58 </span>                :<span class="lineCov">        112 :         return (_p-&gt;fds_bits[(unsigned long)_n/__DARWIN_NFDBITS] &amp; ((__int32_t)(((unsigned long)1)&lt;&lt;((unsigned long)_n % __DARWIN_NFDBITS))));</span>
 <span class="lineNum">      59 </span>                :            : }
 <span class="lineNum">      60 </span>                :            : 
 <span class="lineNum">      61 </span>                :            : #define __DARWIN_FD_SET(n, p)   do { int __fd = (n); ((p)-&gt;fds_bits[(unsigned long)__fd/__DARWIN_NFDBITS] |= ((__int32_t)(((unsigned long)1)&lt;&lt;((unsigned long)__fd % __DARWIN_NFDBITS)))); } while(0)

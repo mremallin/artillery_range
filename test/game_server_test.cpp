@@ -40,6 +40,7 @@ TEST_GROUP(game_server_network)
                 .withParameter("fd", s_game_server_remote_conns[i].gsrc_remote_fd)
                 .withOutputParameterReturning("rc", &rc, sizeof(rc));
         }
+
         mock().expectOneCall("close")
             .withParameter("fd", s_game_server_receive_socket_v4)
             .withOutputParameterReturning("rc", &rc, sizeof(rc));
@@ -226,7 +227,6 @@ TEST(game_server_network, handle_one_pending_connection)
     CHECK_EQUAL(s_game_server_remote_conns[0].gsrc_remote_fd, TEST_FD_NO);
 }
 
-#if 0
 TEST(game_server_network, handle_10_pending_connections)
 {
     int is_pending_conn = 1;
@@ -234,5 +234,25 @@ TEST(game_server_network, handle_10_pending_connections)
     int num_ready_fds = 0;
     int i;
 
+    for (i = 0; i < 10; i++) {
+        mock().expectOneCall("pselect")
+            .withOutputParameterReturning("num_ready_fds", &is_pending_conn,
+                                          sizeof(is_pending_conn));
+        mock().expectOneCall("accept")
+            .withOutputParameterReturning("accepted_conn_fd", &accepted_conn_fd,
+                                          sizeof(accepted_conn_fd));
+        mock().expectOneCall("pselect")
+            .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
+                                          sizeof(num_ready_fds));
+        game_server_handle_network();
+
+        accepted_conn_fd++;
+    }
+
+    CHECK_EQUAL(s_game_server_num_remote_conns, 10);
+
+    for(i = 0; i < 10; i++) {
+        CHECK_EQUAL(s_game_server_remote_conns[i].gsrc_remote_fd,
+                    TEST_FD_NO+i);
+    }
 }
-#endif
