@@ -120,7 +120,6 @@ extern "C" {
         return rc;
     }
 
-
     int
     pselect(int max_fd_count,
             fd_set *read_fd_set,
@@ -130,8 +129,21 @@ extern "C" {
 	    const sigset_t * sigmask)
     {
         int num_ready_fds;
+        int i;
+
         mock().actualCall("pselect")
             .withOutputParameter("num_ready_fds", &num_ready_fds);
+
+        if (read_fd_set) {
+            FD_ZERO(read_fd_set);
+        }
+
+        for (i = 0; i <= num_ready_fds; i++) {
+            if (read_fd_set) {
+                FD_SET(i, read_fd_set);
+            }
+        }
+
         return num_ready_fds;
     }
 
@@ -144,5 +156,16 @@ extern "C" {
         mock().actualCall("accept")
             .withOutputParameter("accepted_conn_fd", &accepted_conn_fd);
         return accepted_conn_fd;
+    }
+
+    ssize_t
+    read(int fd_no,
+         void *read_buffer,
+         size_t buffer_len)
+    {
+        ssize_t num_bytes_read;
+        mock().actualCall("read")
+            .withOutputParameter("num_bytes_read", &num_bytes_read);
+        return num_bytes_read;
     }
 }
