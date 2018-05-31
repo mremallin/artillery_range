@@ -171,7 +171,7 @@ game_server_network_handle_pending_conns (void)
 
     struct pollfd receive_poll_info = {
         .fd = s_game_server_receive_socket_v4,
-        .events = POLLRDNORM,
+        .events = POLLRDNORM | POLLRDBAND,
         .revents = 0,
     };
 
@@ -191,7 +191,7 @@ game_server_network_handle_pending_conns (void)
 static void
 game_server_network_handle_socket_read (int pending_fd)
 {
-    uint8_t read_buf[100];
+    uint8_t read_buf[100] = {0};
     ssize_t num_bytes_read = 0;
 
     num_bytes_read = read(pending_fd, read_buf, sizeof(read_buf));
@@ -208,25 +208,17 @@ game_server_network_handle_pending_reads (void)
 {
     int num_ready_fds = 0;
     size_t i;
-    int nfds = 0;
-
-    fd_set read_fds;
-
-    FD_ZERO(&read_fds);
+    struct pollfd fds_to_poll[s_game_server_num_remote_conns];
 
     for (i = 0 ; i < s_game_server_num_remote_conns; i++) {
-        FD_SET(s_game_server_remote_conns[i].gsrc_remote_fd,
-               &read_fds);
-        nfds = MAX(s_game_server_remote_conns[i].gsrc_remote_fd,
-                   nfds);
+        fds_to_poll[i].fd = s_game_server_remote_conns[i].gsrc_remote_fd;
+        fds_to_poll[i].events = POLLRDNORM;
+        fds_to_poll[i].revents = 0;
     }
 
-    num_ready_fds = pselect(nfds+1,
-                            &read_fds,
-                            NULL /* Write FDs */,
-                            NULL /* Exception FDs */,
-                            NULL /* Timeout */,
-                            NULL /* Signal mask */);
+    num_ready_fds = poll((struct pollfd *)&fds_to_poll,
+                         (nfds_t)s_game_server_num_remote_conns,
+                         0);
 
     if (num_ready_fds == -1) {
         SDL_Log("Failed to select when handling pending reads: %u", errno);
@@ -234,10 +226,9 @@ game_server_network_handle_pending_reads (void)
     }
 
     for (i = 0; i < s_game_server_num_remote_conns; i++) {
-        if (FD_ISSET(s_game_server_remote_conns[i].gsrc_remote_fd,
-                     &read_fds)) {
+        if ((fds_to_poll[i].revents & POLLRDNORM) != 0) {
             game_server_network_handle_socket_read(
-                s_game_server_remote_conns[i].gsrc_remote_fd);
+                fds_to_poll[i].fd);
         }
     }
 }
@@ -253,6 +244,7 @@ static void *
 game_server_thread (void *arg)
 {
     bool printed = false;
+    (void)pthread_setname_np("game_server");
 
     game_server_open_socket();
 

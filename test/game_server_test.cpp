@@ -198,7 +198,7 @@ TEST(game_server_network, handle_no_pending_connections)
     mock().expectOneCall("poll")
         .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
                                       sizeof(num_ready_fds));
-    mock().expectOneCall("pselect")
+    mock().expectOneCall("poll")
         .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
                                       sizeof(num_ready_fds));
 
@@ -218,7 +218,7 @@ TEST(game_server_network, handle_one_pending_connection)
         .withOutputParameterReturning("accepted_conn_fd", &accepted_conn_fd,
                                       sizeof(accepted_conn_fd));
 
-    mock().expectOneCall("pselect")
+    mock().expectOneCall("poll")
         .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
                                       sizeof(num_ready_fds));
 
@@ -241,7 +241,7 @@ TEST(game_server_network, handle_10_pending_connections)
         mock().expectOneCall("accept")
             .withOutputParameterReturning("accepted_conn_fd", &accepted_conn_fd,
                                           sizeof(accepted_conn_fd));
-        mock().expectOneCall("pselect")
+        mock().expectOneCall("poll")
             .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
                                           sizeof(num_ready_fds));
         game_server_handle_network();

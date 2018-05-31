@@ -8,7 +8,7 @@ var indexSectionsWithContent =
   5: "aglmost",
   6: "ou",
   7: "ou",
-  8: "acdfimopst",
+  8: "acfimopst",
   9: "h"
 };
 

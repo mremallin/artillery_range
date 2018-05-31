@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['debug_5fmode',['DEBUG_MODE',['../main_8h.html#ac80a3592e72fd96b772ee47a7d8e0d0a',1,'main.h']]],
   ['display_2ec',['display.c',['../display_8c.html',1,'']]],
   ['display_2eh',['display.h',['../display_8h.html',1,'']]],
   ['display_5ffinish_5fframe',['display_finish_frame',['../display_8c.html#a9d9947c34103225f2d5c210d53fd02ba',1,'display_finish_frame(void):&#160;display.c'],['../display_8h.html#a9d9947c34103225f2d5c210d53fd02ba',1,'display_finish_frame(void):&#160;display.c']]],

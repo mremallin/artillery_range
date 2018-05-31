@@ -1,20 +1,7 @@
 var searchData=
 [
-  ['screen_5fheight',['SCREEN_HEIGHT',['../main_8h.html#a6974d08a74da681b3957b2fead2608b8',1,'main.h']]],
-  ['screen_5fwidth',['SCREEN_WIDTH',['../main_8h.html#a2cd109632a6dcccaa80b43561b1ab700',1,'main.h']]],
-  ['sm_5fdefine',['SM_DEFINE',['../sm__compile_8h.html#a1083e606d9fc04fec5dcf1c1cc81a064',1,'sm_compile.h']]],
-  ['sm_5fend',['SM_END',['../sm__compile_8h.html#a5358c9e0db8b7014700e47d3de7f0163',1,'sm_compile.h']]],
-  ['sm_5fevent_5flist_5fend',['SM_EVENT_LIST_END',['../sm__compile_8h.html#af66f6c16c3a6e08efab84fd86204156f',1,'sm_compile.h']]],
-  ['sm_5fevent_5flist_5fentry',['SM_EVENT_LIST_ENTRY',['../sm__compile_8h.html#a1a6e0b06794d1882d35d646f7aed552f',1,'sm_compile.h']]],
-  ['sm_5fevent_5flist_5fstart',['SM_EVENT_LIST_START',['../sm__compile_8h.html#a49a3bfea3e8454ca32dbc7215e5f18ab',1,'sm_compile.h']]],
-  ['sm_5fstart',['SM_START',['../sm__compile_8h.html#a98def1bb83aaae6d8599c60e435b3aee',1,'sm_compile.h']]],
-  ['sm_5fstate_5fend',['SM_STATE_END',['../sm__compile_8h.html#a1196bbcc00c5699eec390faea65171d9',1,'sm_compile.h']]],
-  ['sm_5fstate_5fevent',['SM_STATE_EVENT',['../sm__compile_8h.html#ac62d7d17ccd2aa0deebc22f165208d60',1,'sm_compile.h']]],
-  ['sm_5fstate_5flist_5fend',['SM_STATE_LIST_END',['../sm__compile_8h.html#a92c3831f9948b5dd6de365c63b938851',1,'sm_compile.h']]],
-  ['sm_5fstate_5flist_5fentry',['SM_STATE_LIST_ENTRY',['../sm__compile_8h.html#ab963eb6924a6e798e7e291a04c051735',1,'sm_compile.h']]],
-  ['sm_5fstate_5flist_5fstart',['SM_STATE_LIST_START',['../sm__compile_8h.html#a36bf75ac5c93d818d6d3f02f3b1fa3f9',1,'sm_compile.h']]],
-  ['sm_5fstate_5fstart',['SM_STATE_START',['../sm__compile_8h.html#a90acd84d695b979ea02e5f026beb7533',1,'sm_compile.h']]],
-  ['sprite_5fflag_5fbackground',['SPRITE_FLAG_BACKGROUND',['../sprite_8h.html#acbf7a348835cc1c0f20661361ac809d3',1,'sprite.h']]],
-  ['sprite_5fflag_5fforeground',['SPRITE_FLAG_FOREGROUND',['../sprite_8h.html#a68a79e711a40a0b550e8529e3f2ef18c',1,'sprite.h']]],
-  ['sprite_5fflag_5fmidground',['SPRITE_FLAG_MIDGROUND',['../sprite_8h.html#a1f4393c7622148472159805e7a048d16',1,'sprite.h']]]
+  ['text_5foption_5fcentred_5fx',['TEXT_OPTION_CENTRED_X',['../text_8h.html#ae2f9a452b5344e8ef81e1ce9672ab398',1,'text.h']]],
+  ['text_5foption_5fnone',['TEXT_OPTION_NONE',['../text_8h.html#a9420f60808b83161e53cc6101c4d2b03',1,'text.h']]],
+  ['text_5foption_5fscrolling',['TEXT_OPTION_SCROLLING',['../text_8h.html#a4999ba50f7fc777e01db2dc3e7d3d73b',1,'text.h']]],
+  ['text_5fscroll_5fspeed_5fpx_5fms',['TEXT_SCROLL_SPEED_PX_MS',['../text_8h.html#ae349efe60975db5c1eba5c7e9632682d',1,'text.h']]]
 ];

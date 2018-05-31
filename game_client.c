@@ -77,6 +77,7 @@ game_client_main_loop (void)
 static void*
 game_client_thread (void *arg)
 {
+    (void)pthread_setname_np("game_client");
     game_client_open_socket();
 
     while (s_game_client_running == true) {
