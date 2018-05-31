@@ -17,6 +17,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <netinet/ip.h>
+#include <poll.h>
 
 #include "utils.h"
 
@@ -168,18 +169,16 @@ game_server_network_handle_pending_conns (void)
 {
     int num_ready_fds = 0;
 
-    fd_set read_fds;
+    struct pollfd receive_poll_info = {
+        .fd = s_game_server_receive_socket_v4,
+        .events = POLLRDNORM,
+        .revents = 0,
+    };
 
-    FD_ZERO(&read_fds);
-    FD_SET(s_game_server_receive_socket_v4, &read_fds);
+    num_ready_fds = poll(&receive_poll_info, (nfds_t)1, 0);
 
-    num_ready_fds = pselect(s_game_server_receive_socket_v4 + 1, &read_fds,
-                            NULL /* Write FDs */,
-                            NULL /* Exception FDs */,
-                            NULL /* Timeout */,
-                            NULL /* Signal mask */);
     if (num_ready_fds == -1) {
-        SDL_Log("Failed to select when handling pending connections: %u",
+        SDL_Log("Failed to poll when handling pending connections: %u",
                 errno);
         return;
     }

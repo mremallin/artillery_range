@@ -195,7 +195,7 @@ TEST(game_server_network, handle_no_pending_connections)
 {
     int num_ready_fds = 0;
 
-    mock().expectOneCall("pselect")
+    mock().expectOneCall("poll")
         .withOutputParameterReturning("num_ready_fds", &num_ready_fds,
                                       sizeof(num_ready_fds));
     mock().expectOneCall("pselect")
@@ -211,7 +211,7 @@ TEST(game_server_network, handle_one_pending_connection)
     int accepted_conn_fd = TEST_FD_NO;
     int num_ready_fds = 0;
 
-    mock().expectOneCall("pselect")
+    mock().expectOneCall("poll")
         .withOutputParameterReturning("num_ready_fds", &is_pending_conn,
                                       sizeof(is_pending_conn));
     mock().expectOneCall("accept")
@@ -235,7 +235,7 @@ TEST(game_server_network, handle_10_pending_connections)
     int i;
 
     for (i = 0; i < 10; i++) {
-        mock().expectOneCall("pselect")
+        mock().expectOneCall("poll")
             .withOutputParameterReturning("num_ready_fds", &is_pending_conn,
                                           sizeof(is_pending_conn));
         mock().expectOneCall("accept")

@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <netinet/ip.h>
 #include <arpa/inet.h>
+#include <poll.h>
 
 extern "C" {
     void
@@ -167,5 +168,16 @@ extern "C" {
         mock().actualCall("read")
             .withOutputParameter("num_bytes_read", &num_bytes_read);
         return num_bytes_read;
+    }
+
+    int
+    poll (struct pollfd fds[],
+          nfds_t nfds,
+          int timeout)
+    {
+        int num_ready_fds;
+        mock().actualCall("poll")
+            .withOutputParameter("num_ready_fds", &num_ready_fds);
+        return num_ready_fds;
     }
 }
