@@ -105,9 +105,7 @@ update_frame (uint32_t frame_delta_ms)
     display_start_frame();
     object_system_update(frame_delta_ms);
     object_system_draw();
-#ifdef DEBUG_MODE
     display_framerate(frame_delta_ms);
-#endif
     display_finish_frame();
 }
 
